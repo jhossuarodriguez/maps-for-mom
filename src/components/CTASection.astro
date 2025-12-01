@@ -1,0 +1,88 @@
+---
+import { ArrowRight, Mail } from "@lucide/astro";
+import { Image } from "astro:assets";
+import Image1 from "@/assets/CTAImages/Image1.webp";
+import Image2 from "@/assets/CTAImages/Image2.webp";
+import Image3 from "@/assets/CTAImages/Image3.webp";
+
+const images = [
+    { src: Image1, alt: "Travel destination 1" },
+    { src: Image2, alt: "Travel destination 2" },
+    { src: Image3, alt: "Travel destination 3" },
+];
+---
+
+<section
+    class="py-20 bg-linear-to-br from-primary/20 via-secondary/10 to-primary/20 relative overflow-hidden"
+>
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="mb-6">Ready for Your Next Adventure?</h2>
+                    <p class="text-xl text-muted-foreground mb-8">
+                        Stop scrolling through endless travel blogs and let us
+                        create your perfect itinerary. Whether it's a family
+                        vacation, romantic getaway, or solo adventure—we've got
+                        you covered.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <button
+                            class="bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-4 flex items-center gap-2 transition-all hover:scale-105 shadow-lg"
+                        >
+                            Get Your Itinerary
+                            <ArrowRight class="w-5 h-5" />
+                        </button>
+                        <button
+                            class="bg-white hover:bg-white/90 text-foreground rounded-full px-8 py-4 flex items-center gap-2 transition-all hover:scale-105 shadow-lg"
+                        >
+                            <Mail class="w-5 h-5" />
+                            Contact Us
+                        </button>
+                    </div>
+
+                    <div
+                        class="flex items-center gap-6 text-sm text-muted-foreground"
+                    >
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 bg-secondary rounded-full">
+                            </div>
+                            <span>No booking fees</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 bg-secondary rounded-full">
+                            </div>
+                            <span>Quick turnaround</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 bg-secondary rounded-full">
+                            </div>
+                            <span>Expert curation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        {
+                            images.map((image, index) => (
+                                <div
+                                    class={`rounded-2xl overflow-hidden shadow-xl ${
+                                        index === 0 ? "col-span-2" : ""
+                                    } ${index === 1 ? "translate-y-8" : ""}`}
+                                >
+                                    <Image
+                                        src={image.src}
+                                        alt={image.alt}
+                                        class="w-full h-64 object-cover hover:scale-110 transition-transform duration-500"
+                                    />
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
