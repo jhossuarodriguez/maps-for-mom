@@ -1,5 +1,5 @@
 ---
-import { ArrowRight, Menu, MapPin } from "@lucide/astro";
+import { ArrowRight, Menu } from "@lucide/astro";
 import Image from "astro/components/Image.astro";
 import Logo from "@/assets/Logo.webp";
 ---
@@ -59,11 +59,13 @@ import Logo from "@/assets/Logo.webp";
       >
         <span class="text-sm">Inspired by Moms • Perfect for Everyone</span>
       </div>
-      <h1 class="text-6xl md:text-7xl mb-6 tracking-tight font-montserrat">
+      <h1 class="text-6xl md:text-7xl mb-6 tracking-tight">
         Your Dream Trip,<br />
         <span class="text-primary">Perfectly Planned</span>
       </h1>
-      <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-90">
+      <p
+        class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-90 font-sans"
+      >
         Personalized travel itineraries crafted for busy people who deserve
         unforgettable experiences without the stress of planning.
       </p>
@@ -88,10 +90,6 @@ import Logo from "@/assets/Logo.webp";
 </section>
 
 <style>
-  :root {
-    --spacing-6: 1.5rem;
-  }
-
   .hero-header {
     background: transparent;
     border-bottom: 1px solid transparent;
@@ -115,7 +113,6 @@ import Logo from "@/assets/Logo.webp";
       background: rgba(255, 255, 255, 0.95);
       border-bottom-color: rgba(148, 163, 184, 0.4);
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
-      padding-bottom: var(--spacing-6);
     }
   }
 
