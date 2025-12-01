@@ -2,29 +2,33 @@
 import { Users, Compass, Mountain, Plane, Heart, Camera } from "@lucide/astro";
 const experiences = [
     {
+        icon: Compass,
+        title: "Tailored Escapes",
+        color: "from-primary to-primary/80",
+    },
+    {
+        icon: Heart,
+        title: "Relaxation & Wellness",
+        color: "from-secondary to-secondary/80",
+    },
+    {
         icon: Users,
         title: "Family Connection",
         color: "from-primary to-primary/80",
     },
     {
-        icon: Compass,
-        title: "Adventure",
+        icon: Mountain,
+        title: "Adventure Experiences",
         color: "from-secondary to-secondary/80",
     },
-    { icon: Mountain, title: "Wellness", color: "from-primary to-primary/80" },
     {
         icon: Plane,
-        title: "Relaxation",
-        color: "from-secondary to-secondary/80",
-    },
-    {
-        icon: Heart,
-        title: "Romantic Getaways",
+        title: "Convenience & Flexibility",
         color: "from-primary to-primary/80",
     },
     {
         icon: Camera,
-        title: "Cultural Experiences",
+        title: "Luxury Spa Escapes",
         color: "from-secondary to-secondary/80",
     },
 ];
@@ -33,10 +37,11 @@ const experiences = [
 <section id="services" class="py-20 bg-muted">
     <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-            <h2 class="mb-4">Travel Your Way</h2>
+            <h2 class="mb-4">Curated Experiences For Every Traveler</h2>
             <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Whether it's adventure, relaxation, or connection—we curate
-                experiences that match your vibe
+                We don't just book hotels and flights. We curate travel
+                itineraries with unforgettable experiences—beaches, hikes, spas,
+                girls trips, family adventures, and more
             </p>
         </div>
         <div
