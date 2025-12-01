@@ -1,0 +1,152 @@
+---
+import { ArrowRight, Menu, MapPin } from "@lucide/astro";
+import Image from "astro/components/Image.astro";
+import Logo from "@/assets/Logo.webp";
+---
+
+<section
+  class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden"
+>
+  <div
+    class="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105 bg-[url('/src/assets/background.webp')]"
+  >
+    <div
+      class="absolute inset-0 bg-linear-to-r from-black/70 via-black/50 to-transparent"
+    >
+    </div>
+  </div>
+
+  {/* Header fijo con efecto de scroll via CSS */}
+  <header class="hero-header fixed top-0 left-0 right-0 z-50">
+    <div class="container mx-auto px-6 py-6 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2">
+          <Image
+            src={Logo}
+            alt="Maps For Mom Logo"
+            width={150}
+            height={150}
+            loading="eager"
+          />
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#about" class="text-white hover:text-primary hero-nav-link">
+          About
+        </a>
+        <a href="#services" class="text-white hover:text-primary hero-nav-link">
+          Services
+        </a>
+        <a href="#process" class="text-white hover:text-primary hero-nav-link">
+          Process
+        </a>
+        <a href="#contact" class="text-white hover:text-primary hero-nav-link">
+          Contact
+        </a>
+      </nav>
+
+      <button class="md:hidden cursor-pointer">
+        <Menu class="w-6 h-6 hero-header-icon" />
+      </button>
+    </div>
+  </header>
+
+  <div class="relative z-10 text-white px-6 max-w-5xl mx-auto text-center">
+    <div class="animate-fade-in">
+      <div
+        class="inline-block mb-6 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30"
+      >
+        <span class="text-sm">Inspired by Moms • Perfect for Everyone</span>
+      </div>
+      <h1 class="text-6xl md:text-7xl mb-6 tracking-tight font-montserrat">
+        Your Dream Trip,<br />
+        <span class="text-primary">Perfectly Planned</span>
+      </h1>
+      <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-90">
+        Personalized travel itineraries crafted for busy people who deserve
+        unforgettable experiences without the stress of planning.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <button
+          class="bg-primary hover:bg-primary/90 text-white rounded-full px-10 py-4 flex items-center gap-2 transition-all hover:scale-105 shadow-xl cursor-pointer"
+        >
+          Start Your Journey
+          <ArrowRight class="w-5 h-5" />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <div
+      class="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2"
+    >
+      <div class="w-1 h-3 bg-white/50 rounded-full"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  :root {
+    --spacing-6: 1.5rem;
+  }
+
+  .hero-header {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    box-shadow: 0 0 0 rgba(15, 23, 42, 0);
+
+    animation: header-blur-scroll 0.3s ease-out both;
+    animation-timeline: scroll(root);
+    animation-range: 0 200px;
+  }
+
+  @keyframes header-blur-scroll {
+    0% {
+      backdrop-filter: blur(0px);
+      background: rgba(255, 255, 255, 0);
+      border-bottom-color: transparent;
+      box-shadow: 0 0 0 rgba(15, 23, 42, 0);
+      padding-bottom: 0;
+    }
+    100% {
+      backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom-color: rgba(148, 163, 184, 0.4);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+      padding-bottom: var(--spacing-6);
+    }
+  }
+
+  .hero-header-icon {
+    animation: hero-icon-scroll 0.3s ease-out both;
+    animation-timeline: scroll(root);
+    animation-range: 0 200px;
+  }
+
+  @keyframes hero-icon-scroll {
+    0% {
+      color: white;
+    }
+    100% {
+      color: var(--color-primary);
+    }
+  }
+
+  .hero-nav-link {
+    animation: hero-nav-link-scroll 0.3s ease-out both;
+    animation-timeline: scroll(root);
+    animation-range: 0 200px;
+    transition: color 0.2s ease;
+  }
+
+  @keyframes hero-nav-link-scroll {
+    0% {
+      color: white;
+    }
+    100% {
+      color: var(--color-foreground);
+    }
+  }
+</style>
