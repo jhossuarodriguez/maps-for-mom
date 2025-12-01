@@ -1,0 +1,105 @@
+---
+import {
+    Facebook,
+    Instagram,
+    Twitter,
+    Mail,
+    MapPin,
+    Heart,
+} from "@lucide/astro";
+---
+
+<footer class="bg-foreground text-white py-12">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <div class="flex items-center gap-2 mb-4">
+                    <MapPin class="w-6 h-6 text-primary" />
+                    <h3 class="text-white">Maps For Mom</h3>
+                </div>
+                <p class="text-white/70 mb-6">
+                    Personalized travel itineraries for busy travelers. Inspired
+                    by moms, perfect for everyone.
+                </p>
+                <div class="flex gap-4">
+                    <a
+                        href="#"
+                        class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all hover:scale-110"
+                    >
+                        <Facebook class="w-5 h-5" />
+                    </a>
+                    <a
+                        href="#"
+                        class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all hover:scale-110"
+                    >
+                        <Instagram class="w-5 h-5" />
+                    </a>
+                    <a
+                        href="#"
+                        class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all hover:scale-110"
+                    >
+                        <Twitter class="w-5 h-5" />
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="mb-4 text-white">Quick Links</h4>
+                <ul class="space-y-3">
+                    <li>
+                        <a
+                            href="#services"
+                            class="text-white/70 hover:text-primary transition-colors"
+                            >Services</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#process"
+                            class="text-white/70 hover:text-primary transition-colors"
+                            >How It Works</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#contact"
+                            class="text-white/70 hover:text-primary transition-colors"
+                            >Contact</a
+                        >
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="mb-4 text-white">Get In Touch</h4>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3 text-white/70">
+                        <MapPin class="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                        <span>Tampa, FL & Phoenix, AZ</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-white/70">
+                        <Mail class="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                        <a
+                            href="mailto:info@mapsformom.com"
+                            class="hover:text-primary transition-colors"
+                        >
+                            info@mapsformom.com
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div
+            class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+            <p class="text-white/50 text-sm">
+                &copy; 2025 Maps For Mom. All rights reserved.
+            </p>
+            <p class="text-white/50 text-sm flex items-center gap-2">
+                Made with <Heart class="w-4 h-4 text-primary fill-primary" /> by
+                travel enthusiasts
+            </p>
+        </div>
+    </div>
+</footer>
