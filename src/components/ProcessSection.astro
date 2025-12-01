@@ -1,0 +1,67 @@
+---
+import { ClipboardList, MessageSquare, MapPin, Plane } from "@lucide/astro";
+
+const steps = [
+    {
+        icon: ClipboardList,
+        title: "Share Your Dreams",
+        description:
+            "Tell us about your ideal trip through our quick questionnaire",
+    },
+    {
+        icon: MessageSquare,
+        title: "We Curate",
+        description: "Our experts craft your personalized itinerary",
+    },
+    {
+        icon: MapPin,
+        title: "Review & Refine",
+        description: "Receive your custom plan and make it perfect",
+    },
+    {
+        icon: Plane,
+        title: "Bon Voyage!",
+        description: "Travel with confidence and make memories",
+    },
+];
+---
+
+<section id="process" class="py-20 bg-white relative overflow-hidden">
+    <div
+        class="absolute inset-0 bg-linear-to-b from-primary/5 to-transparent pointer-events-none"
+    >
+    </div>
+
+    <div class="container mx-auto px-6 relative">
+        <div class="text-center mb-16">
+            <h2 class="mb-4">Simple. Personal. Seamless.</h2>
+            <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                From dreaming to doing in just four easy steps
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto relative">
+            <div
+                class="hidden md:block absolute top-12 left-0 right-0 h-1 bg-linear-to-r from-primary via-secondary to-primary"
+            >
+            </div>
+
+            {
+                steps.map((step, index) => (
+                    <div class="text-center relative">
+                        <div class="relative mb-6 inline-block">
+                            <div class="w-24 h-24 bg-linear-to-br from-primary to-secondary rounded-3xl flex items-center justify-center mx-auto shadow-xl hover:scale-110 transition-transform rotate-3 hover:rotate-0">
+                                <step.icon class="w-12 h-12 text-white" />
+                            </div>
+                            <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-white border-4 border-white text-primary rounded-full flex items-center justify-center shadow-lg">
+                                <span>{index + 1}</span>
+                            </div>
+                        </div>
+                        <h3 class="mb-3">{step.title}</h3>
+                        <p class="text-muted-foreground">{step.description}</p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
