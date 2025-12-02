@@ -16,7 +16,6 @@ import Logo from "@/assets/Logo.webp";
     </div>
   </div>
 
-  {/* Header fijo con efecto de scroll via CSS */}
   <header class="hero-header fixed top-0 left-0 right-0 z-50">
     <div class="container mx-auto px-6 py-6 flex items-center justify-between">
       <div class="flex items-center gap-3">
@@ -31,21 +30,24 @@ import Logo from "@/assets/Logo.webp";
       </div>
 
       <nav class="hidden md:flex items-center gap-8">
-        <a href="#about" class="text-white hover:text-primary hero-nav-link">
-          About
+        <a href="#home" class="text-white hover:text-primary hero-nav-link">
+          Home
         </a>
-        <a href="#services" class="text-white hover:text-primary hero-nav-link">
-          Services
+        <a href="#gallery" class="text-white hover:text-primary hero-nav-link">
+          Gallery
         </a>
         <a href="#process" class="text-white hover:text-primary hero-nav-link">
           Process
+        </a>
+        <a href="#about" class="text-white hover:text-primary hero-nav-link">
+          About
         </a>
         <a href="#contact" class="text-white hover:text-primary hero-nav-link">
           Contact
         </a>
       </nav>
 
-      <button class="md:hidden cursor-pointer">
+      <button class="md:hidden cursor-pointer" aria-label="Menu">
         <Menu class="w-6 h-6 hero-header-icon" />
       </button>
     </div>
@@ -73,6 +75,7 @@ import Logo from "@/assets/Logo.webp";
       <div class="flex flex-wrap gap-4 justify-center">
         <button
           class="bg-primary hover:bg-primary/90 text-white rounded-full px-10 py-4 flex items-center gap-2 transition-all hover:scale-105 shadow-xl cursor-pointer"
+          aria-label="Start Your Journey"
         >
           Start Your Journey
           <ArrowRight class="w-5 h-5" />
