@@ -6,6 +6,8 @@ import {
     Mail,
     MapPin,
     Heart,
+    Phone,
+    Youtube,
 } from "@lucide/astro";
 ---
 
@@ -18,6 +20,7 @@ import {
                         src="/favicon.webp"
                         class="w-6 h-6 text-primary"
                         alt="Maps for Mom Logo"
+                        loading="lazy"
                     />
                     <h3 class="text-white">Maps For Mom</h3>
                 </div>
@@ -27,10 +30,12 @@ import {
                 </p>
                 <div class="flex gap-4">
                     <a
-                        href="#"
+                        href="https://www.facebook.com/mapsformom/"
                         rel="noopener noreferrer"
                         target="_blank"
                         class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all hover:scale-110"
+                        title="Official Facebook Page of Maps for Mom"
+                        aria-label="Facebook"
                     >
                         <Facebook class="w-5 h-5" />
                     </a>
@@ -39,23 +44,47 @@ import {
                         rel="noopener noreferrer"
                         target="_blank"
                         class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all hover:scale-110"
+                        title="Official Instagram of Maps for Mom"
+                        aria-label="Instagram"
                     >
                         <Instagram class="w-5 h-5" />
                     </a>
                     <a
-                        href="#"
+                        href="https://www.youtube.com/@mapsformom"
                         rel="noopener noreferrer"
                         target="_blank"
                         class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all hover:scale-110"
+                        title="Official YouTube Account of Maps for Mom"
+                        aria-label="YouTube"
                     >
-                        <Twitter class="w-5 h-5" />
+                        <Youtube class="w-5 h-5" />
+                    </a>
+                    <a
+                        href="https://www.youtube.com/@mapsformom"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        class="w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-all hover:scale-110"
+                        title="Official YouTube Account of Maps for Mom"
+                        aria-label="YouTube"
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            ><path
+                                fill="#FFF"
+                                fill-rule="evenodd"
+                                d="M11.9 3a.5.5 0 0 1 .5-.5h2.8a.5.5 0 0 1 .498.458c.148 1.732.903 2.737 1.753 3.315.872.593 1.881.76 2.527.732a.5.5 0 0 1 .044.999A5.363 5.363 0 0 1 16.89 7.1c-1.018-.692-1.872-1.835-2.134-3.6H12.9v10.467c0 1.698-.672 2.984-1.652 3.672-.981.69-2.243.748-3.252.017-1.252-.907-1.468-2.331-.966-3.455a2.95 2.95 0 0 1 2.67-1.747v-2.28c-.915.06-2.09.294-3.086.913-1.154.717-2.114 1.976-2.114 4.25 0 1.472.398 2.522.984 3.272.589.755 1.398 1.244 2.279 1.536a7.513 7.513 0 0 0 2.635.348c.827-.035 1.467-.196 1.771-.354 1.239-.645 1.94-1.282 2.353-2.091.422-.826.578-1.898.578-3.494V9.071a.5.5 0 0 1 .72-.45c.626.307 2.378.976 4.22 1.126a.5.5 0 1 1-.08.997c-1.506-.123-2.941-.559-3.86-.915v4.725c0 1.633-.154 2.903-.687 3.948-.542 1.063-1.441 1.825-2.782 2.524-.489.254-1.295.428-2.191.466-.91.039-1.973-.06-2.992-.398-1.02-.339-2.014-.924-2.753-1.87C3.954 18.274 3.5 17 3.5 15.337c0-2.621 1.14-4.201 2.586-5.1 1.41-.876 3.066-1.079 4.114-1.079a.5.5 0 0 1 .5.5v3.33a.5.5 0 0 1-.574.494c-1.066-.16-1.855.395-2.183 1.127-.325.729-.197 1.631.64 2.237.633.459 1.427.441 2.09-.025.666-.468 1.227-1.42 1.227-2.854V3Z"
+                                clip-rule="evenodd"></path></svg
+                        >
                     </a>
                 </div>
             </div>
 
             <div>
-                <h4 class="mb-4 text-white">Quick Links</h4>
-                <ul class="space-y-3">
+                <span class="text-white">Quick Links</span>
+                <ul class="space-y-3 mt-4">
                     <li>
                         <a
                             href="#services"
@@ -81,8 +110,8 @@ import {
             </div>
 
             <div>
-                <h4 class="mb-4 text-white">Get In Touch</h4>
-                <ul class="space-y-3">
+                <span class="text-white text-base">Get In Touch</span>
+                <ul class="space-y-3 mt-4">
                     <li class="flex items-start gap-3 text-white/70">
                         <MapPin class="w-5 h-5 text-primary shrink-0 mt-0.5" />
                         <span>Miami, FL, USA</span>
@@ -90,10 +119,19 @@ import {
                     <li class="flex items-start gap-3 text-white/70">
                         <Mail class="w-5 h-5 text-primary shrink-0 mt-0.5" />
                         <a
-                            href="mailto:info@mapsformom.com"
+                            href="mailto:hello@mapsformom.com"
                             class="hover:text-primary transition-colors"
                         >
-                            info@mapsformom.com
+                            hello@mapsformom.com
+                        </a>
+                    </li>
+                    <li class="flex items-start gap-3 text-white/70">
+                        <Phone class="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                        <a
+                            href="tel:(208)555-0112"
+                            class="hover:text-primary transition-colors"
+                        >
+                            Shirley Ramones | Karey Carey
                         </a>
                     </li>
                 </ul>
