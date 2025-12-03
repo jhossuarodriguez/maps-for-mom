@@ -1,0 +1,154 @@
+---
+import { Menu } from "@lucide/astro";
+import { Image } from "astro:assets";
+import Logo from "@/assets/Logo.webp";
+
+const { solid = false } = Astro.props;
+---
+
+<header
+    class={`hero-header fixed top-0 left-0 right-0 z-50 ${solid ? "hero-header--solid" : ""}`}
+>
+    <div class="container mx-auto px-6 py-6 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2">
+                <a
+                    href="/"
+                    aria-label="Maps For Mom Home"
+                    title="Maps For Mom Home"
+                >
+                    <Image
+                        src={Logo}
+                        alt="Maps For Mom Logo"
+                        width={150}
+                        loading="eager"
+                    />
+                </a>
+            </div>
+        </div>
+
+        <nav class="hidden md:flex items-center gap-8">
+            <a
+                href="/#home"
+                class="text-white hover:text-primary hero-nav-link"
+                title="Go to Home"
+                aria-label="Go to Home"
+            >
+                Home
+            </a>
+            <a
+                href="/#gallery"
+                class="text-white hover:text-primary hero-nav-link"
+                title="Explore our curated travel experiences"
+                aria-label="Explore our curated travel experiences"
+            >
+                Gallery
+            </a>
+            <a
+                href="/#process"
+                class="text-white hover:text-primary hero-nav-link"
+                title="Learn about our unique travel planning process"
+                aria-label="Learn about our unique travel planning process"
+            >
+                Process
+            </a>
+            <a
+                href="/about/about"
+                class="text-white hover:text-primary hero-nav-link"
+                title="Learn more about our company and services"
+                aria-label="Learn more about our company and services"
+            >
+                About
+            </a>
+            <a
+                href="/#contact"
+                class="text-white hover:text-primary hero-nav-link"
+                title="Get in touch with us"
+                aria-label="Get in touch with us"
+            >
+                Contact
+            </a>
+        </nav>
+
+        <button class="md:hidden cursor-pointer" aria-label="Menu">
+            <Menu class="w-6 h-6 hero-header-icon" />
+        </button>
+    </div>
+</header>
+
+<style>
+    .hero-header {
+        background: transparent;
+        border-bottom: 1px solid transparent;
+        box-shadow: 0 0 0 rgba(15, 23, 42, 0);
+
+        animation: header-blur-scroll 0.3s ease-out both;
+        animation-timeline: scroll(root);
+        animation-range: 0 200px;
+    }
+
+    @keyframes header-blur-scroll {
+        0% {
+            backdrop-filter: blur(0px);
+            background: rgba(255, 255, 255, 0);
+            border-bottom-color: transparent;
+            box-shadow: 0 0 0 rgba(15, 23, 42, 0);
+            padding-bottom: 0;
+        }
+        100% {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom-color: rgba(148, 163, 184, 0.4);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+        }
+    }
+
+    .hero-header-icon {
+        animation: hero-icon-scroll 0.3s ease-out both;
+        animation-timeline: scroll(root);
+        animation-range: 0 200px;
+    }
+
+    @keyframes hero-icon-scroll {
+        0% {
+            color: white;
+        }
+        100% {
+            color: var(--color-primary);
+        }
+    }
+
+    .hero-nav-link {
+        animation: hero-nav-link-scroll 0.3s ease-out both;
+        animation-timeline: scroll(root);
+        animation-range: 0 200px;
+        transition: color 0.2s ease;
+    }
+
+    @keyframes hero-nav-link-scroll {
+        0% {
+            color: white;
+        }
+        100% {
+            color: var(--color-foreground);
+        }
+    }
+
+    .hero-header--solid {
+        animation: none;
+        backdrop-filter: none;
+        background: #ffffff;
+        border-bottom-color: rgba(148, 163, 184, 0.4);
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .hero-header--solid .hero-nav-link {
+        animation: none;
+        color: var(--color-foreground);
+    }
+
+    .hero-header--solid .hero-header-icon {
+        animation: none;
+        color: var(--color-primary);
+    }
+</style>
