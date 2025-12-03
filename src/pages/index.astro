@@ -4,12 +4,17 @@ import ContactSection from "@/components/ContactSection.astro";
 import CTASection from "@/components/CTASection.astro";
 import ExperiencesSection from "@/components/ExperiencesSection.astro";
 import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
 import Hero from "@/components/Hero.astro";
 import ProcessSection from "@/components/ProcessSection.astro";
 import Layout from "@/layouts/Layout.astro";
+
+const canonical = "https://mapsformom.com/";
+export const prerender = true;
 ---
 
-<Layout>
+<Layout canonical={canonical}>
+	<Header />
 	<div class="min-h-screen">
 		<main>
 			<Hero />
@@ -19,6 +24,6 @@ import Layout from "@/layouts/Layout.astro";
 			<CTASection />
 			<ContactSection />
 		</main>
-		<Footer />
 	</div>
+	<Footer />
 </Layout>
