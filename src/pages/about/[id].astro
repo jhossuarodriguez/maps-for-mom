@@ -1,0 +1,236 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+import { Image } from "astro:assets";
+import { Mail } from "@lucide/astro";
+import Image1 from "@/assets/CTAImages/Shirley/1.webp";
+import Image2 from "@/assets/CTAImages/Shirley/2.webp";
+import Image3 from "@/assets/CTAImages/Shirley/3.webp";
+
+import Image4 from "@/assets/CTAImages/Karyn/1.webp";
+import Image5 from "@/assets/CTAImages/Karyn/2.webp";
+import Image6 from "@/assets/CTAImages/Karyn/3.webp";
+
+const bento1 = [
+    { src: Image1, alt: "Travel destination 1" },
+    { src: Image2, alt: "Travel destination 2" },
+    { src: Image3, alt: "Travel destination 3" },
+];
+
+const bento2 = [
+    {
+        src: Image4,
+        alt: "Travel destination 4",
+        class: "object-cover",
+    },
+    { src: Image5, alt: "Travel destination 5" },
+    { src: Image6, alt: "Travel destination 6" },
+];
+
+export const prerender = false;
+const canonical = "https://mapsformom.com/about/[id]";
+---
+
+<Layout canonical={canonical}>
+    <Header solid={true} />
+    <section
+        class="py-20 bg-linear-to-br from-secondary via-secondary/90 to-primary relative overflow-hidden"
+    >
+        <!-- First -->
+        <div class="container mx-auto px-6 relative z-10 mt-16">
+            <div class="max-w-6xl mx-auto">
+                <header
+                    class="relative text-5xl font-bold text-white text-center mb-16"
+                >
+                    About
+                    <span
+                        class="absolute top-12 left-1/2 -translate-x-1/2 w-40 h-1 bg-primary"
+                    ></span>
+                </header>
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3
+                            class="mt-10 mb-4 text-2xl font-semibold text-white"
+                        >
+                            Shirley Ramones
+                        </h3>
+
+                        <div
+                            class="space-y-4 text-lg text-white foreground mb-8"
+                        >
+                            <p>
+                                Hi, I'm Shirley! I'm Ecuadorian, a proud mother
+                                to a wonderful boy named Timothy, and a lover of
+                                travel and new experiences.
+                            </p>
+
+                            <p>
+                                I hold a Bachelor's degree in Hospitality and a
+                                Master's in Business Administration. Born and
+                                raised in the Big Apple (New York City), I now
+                                call Tampa, FL home. With over 12 years of
+                                experience in the Hospitality industry, I've
+                                transitioned into my current role as a
+                                Paralegal.
+                            </p>
+
+                            <p>
+                                Traveling and exploring new cultures have always
+                                been my passions. Whether it's discovering a new
+                                restaurant or immersing myself in a new country
+                                or city, I love expanding my horizons. My
+                                adventurous spirit and wanderlust during my
+                                twenties have inspired me to launch this travel
+                                itinerary service—a project I'm excited to watch
+                                grow in the years ahead.
+                            </p>
+                        </div>
+
+                        <div class="flex flex-wrap gap-4 mb-8">
+                            <a
+                                href="tel:+12085550112"
+                                rel="noopener noreferrer"
+                                class="bg-white hover:bg-white/90 text-foreground rounded-full px-8 py-4 flex items-center gap-2 transition-all hover:scale-105 shadow-lg cursor-pointer"
+                            >
+                                <Mail class="w-5 h-5" />
+                                Contact Us
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div
+                            class="grid grid-cols-2 grid-rows-3 gap-4 h-[600px]"
+                        >
+                            <div
+                                class="row-span-3 rounded-2xl overflow-hidden shadow-xl"
+                            >
+                                <Image
+                                    src={bento1[0].src}
+                                    alt={bento1[0].alt}
+                                    class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 object-left"
+                                    loading={"eager"}
+                                />
+                            </div>
+                            <div
+                                class="row-span-2 rounded-2xl overflow-hidden shadow-xl -translate-y-8"
+                            >
+                                <Image
+                                    src={bento1[1].src}
+                                    alt={bento1[1].alt}
+                                    class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                                    loading={"eager"}
+                                />
+                            </div>
+                            <div
+                                class="row-span-1 rounded-2xl overflow-hidden shadow-xl -translate-y-8 translate-x-7"
+                            >
+                                <Image
+                                    src={bento1[2].src}
+                                    alt={bento1[2].alt}
+                                    class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                                    loading={"lazy"}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second -->
+        <div class="container mx-auto px-6 relative z-10 mt-16">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="relative">
+                        <div
+                            class="grid grid-cols-2 grid-rows-3 gap-4 h-[600px]"
+                        >
+                            <div
+                                class="row-span-3 rounded-2xl overflow-hidden shadow-xl"
+                            >
+                                <Image
+                                    src={bento2[0].src}
+                                    alt={bento2[0].alt}
+                                    class={`w-full h-full ${bento2[0].class || "object-cover"} hover:scale-110 transition-transform duration-500 object-right`}
+                                    loading={"lazy"}
+                                />
+                            </div>
+                            <div
+                                class="row-span-2 rounded-2xl overflow-hidden shadow-xl -translate-y-8"
+                            >
+                                <Image
+                                    src={bento2[1].src}
+                                    alt={bento2[1].alt}
+                                    class={`w-full h-full ${bento2[1].class || "object-cover"} hover:scale-110 transition-transform duration-500`}
+                                    loading={"lazy"}
+                                />
+                            </div>
+                            <div
+                                class="row-span-1 rounded-2xl overflow-hidden shadow-xl -translate-y-8 translate-x-7"
+                            >
+                                <Image
+                                    src={bento2[2].src}
+                                    alt={bento2[2].alt}
+                                    class={`w-full h-full ${bento2[2].class || "object-cover"} hover:scale-110 transition-transform duration-500 object-[50%_30%]`}
+                                    loading={"lazy"}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="mb-4 text-2xl font-semibold text-white">
+                            Karyn Feliz-Carey
+                        </h3>
+
+                        <div
+                            class="space-y-4 text-lg text-white foreground mb-8"
+                        >
+                            <p>
+                                Hi, I'm Karyn! I'm a proud mom of a girl and a
+                                boy, originally from the Dominican Republic, but
+                                I spent my high school and college years in New
+                                York. Now, I call sunny Orlando, FL home.
+                            </p>
+
+                            <p>
+                                I hold a Bachelor's degree in Hotel and Business
+                                Management, and I've always had a passion for
+                                discovering charming, relaxing, and magical
+                                places around the world. Whether it's finding
+                                hidden gems or planning exciting adventures, I
+                                love researching and curating experiences that
+                                leave lasting memories.
+                            </p>
+
+                            <p>
+                                As a planner and adventurer at heart, I'm
+                                excited to heip busy moms (and dads, friends,
+                                and families!) with the details of their
+                                travels. My goal is to take the stress out of
+                                planning, so you can focus on enjoying the
+                                journey and making unforgettable memories with
+                                your loved ones.
+                            </p>
+                        </div>
+
+                        <div class="flex flex-wrap gap-4 mb-8">
+                            <a
+                                class="bg-white hover:bg-white/90 text-foreground rounded-full px-8 py-4 flex items-center gap-2 transition-all hover:scale-105 shadow-lg cursor-pointer"
+                                href="tel:+12085550112"
+                                rel="noopener noreferrer"
+                            >
+                                <Mail class="w-5 h-5" />
+                                Contact Us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <Footer />
+</Layout>
