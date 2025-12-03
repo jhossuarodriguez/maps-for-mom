@@ -1,7 +1,5 @@
 ---
-import { ArrowRight, Menu } from "@lucide/astro";
-import { Image } from "astro:assets";
-import Logo from "@/assets/Logo.webp";
+import { ArrowRight } from "@lucide/astro";
 ---
 
 <section
@@ -15,43 +13,6 @@ import Logo from "@/assets/Logo.webp";
     >
     </div>
   </div>
-
-  <header class="hero-header fixed top-0 left-0 right-0 z-50">
-    <div class="container mx-auto px-6 py-6 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="flex items-center gap-2">
-          <Image
-            src={Logo}
-            alt="Maps For Mom Logo"
-            width={150}
-            loading="eager"
-          />
-        </div>
-      </div>
-
-      <nav class="hidden md:flex items-center gap-8">
-        <a href="#home" class="text-white hover:text-primary hero-nav-link">
-          Home
-        </a>
-        <a href="#gallery" class="text-white hover:text-primary hero-nav-link">
-          Gallery
-        </a>
-        <a href="#process" class="text-white hover:text-primary hero-nav-link">
-          Process
-        </a>
-        <a href="#about" class="text-white hover:text-primary hero-nav-link">
-          About
-        </a>
-        <a href="#contact" class="text-white hover:text-primary hero-nav-link">
-          Contact
-        </a>
-      </nav>
-
-      <button class="md:hidden cursor-pointer" aria-label="Menu">
-        <Menu class="w-6 h-6 hero-header-icon" />
-      </button>
-    </div>
-  </header>
 
   <div class="relative z-10 text-white px-6 max-w-5xl mx-auto text-center">
     <div class="animate-fade-in">
@@ -92,62 +53,3 @@ import Logo from "@/assets/Logo.webp";
     </div>
   </div>
 </section>
-
-<style>
-  .hero-header {
-    background: transparent;
-    border-bottom: 1px solid transparent;
-    box-shadow: 0 0 0 rgba(15, 23, 42, 0);
-
-    animation: header-blur-scroll 0.3s ease-out both;
-    animation-timeline: scroll(root);
-    animation-range: 0 200px;
-  }
-
-  @keyframes header-blur-scroll {
-    0% {
-      backdrop-filter: blur(0px);
-      background: rgba(255, 255, 255, 0);
-      border-bottom-color: transparent;
-      box-shadow: 0 0 0 rgba(15, 23, 42, 0);
-      padding-bottom: 0;
-    }
-    100% {
-      backdrop-filter: blur(16px);
-      background: rgba(255, 255, 255, 0.95);
-      border-bottom-color: rgba(148, 163, 184, 0.4);
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
-    }
-  }
-
-  .hero-header-icon {
-    animation: hero-icon-scroll 0.3s ease-out both;
-    animation-timeline: scroll(root);
-    animation-range: 0 200px;
-  }
-
-  @keyframes hero-icon-scroll {
-    0% {
-      color: white;
-    }
-    100% {
-      color: var(--color-primary);
-    }
-  }
-
-  .hero-nav-link {
-    animation: hero-nav-link-scroll 0.3s ease-out both;
-    animation-timeline: scroll(root);
-    animation-range: 0 200px;
-    transition: color 0.2s ease;
-  }
-
-  @keyframes hero-nav-link-scroll {
-    0% {
-      color: white;
-    }
-    100% {
-      color: var(--color-foreground);
-    }
-  }
-</style>
