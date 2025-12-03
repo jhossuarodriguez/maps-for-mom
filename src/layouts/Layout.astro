@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
 ---
 
 <!doctype html>
@@ -8,7 +9,34 @@ import "../styles/global.css";
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/webp" href="/favicon.webp" />
-		<title>Maps for mom</title>
+		<title>Maps for mom - Your Dream Trip, Perfectly Planned</title>
+		<meta
+			name="og:title"
+			content="Maps for mom - Your Dream Trip, Perfectly Planned"
+		/>
+		<meta
+			name="description"
+			content="Maps for mom - Your Dream Trip, Perfectly Planned"
+		/>
+		<meta name="og:image" content="/og.webp" />
+		<meta
+			name="og:description"
+			content="Maps for mom - Your Dream Trip, Perfectly Planned"
+		/>
+		<meta property="og:site_name" content="Maps for mom" />
+		<meta name="og:type" content="website" />
+		<meta name="og:url" content="https://mapsformom.com/" />
+		<meta
+			property="twitter:description"
+			content="Maps for mom - Your Dream Trip, Perfectly Planned"
+		/>
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:image" content="/og.webp" />
+		<meta name="twitter:title" content="Maps for mom" />
+		<meta name="author" content="Jhossua Roa Rodriguez" />
+		<meta name="robots" content="follow, index" />
+		<meta name="theme-color" content="#D19789" />
+		<ClientRouter />
 	</head>
 	<body>
 		<slot />
@@ -16,7 +44,9 @@ import "../styles/global.css";
 </html>
 
 <style>
-	html,
+	html {
+		scroll-behavior: smooth;
+	}
 	body {
 		margin: 0;
 		width: 100%;
