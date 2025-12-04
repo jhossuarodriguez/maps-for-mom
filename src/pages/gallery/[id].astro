@@ -1,0 +1,169 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+
+export const prerender = false;
+const canonical = "https://mapsformom.com/gallery/[id]";
+import { Image } from "astro:assets";
+import Image1 from "@/assets/bento_gallery/1.webp";
+import Image2 from "@/assets/bento_gallery/2.webp";
+import Image3 from "@/assets/bento_gallery/3.webp";
+import Image4 from "@/assets/bento_gallery/4.webp";
+import Image5 from "@/assets/bento_gallery/5.webp";
+import Image6 from "@/assets/bento_gallery/6.webp";
+import Image7 from "@/assets/bento_gallery/7.webp";
+import Image8 from "@/assets/bento_gallery/8.webp";
+import Image9 from "@/assets/bento_gallery/9.webp";
+import Image10 from "@/assets/bento_gallery/10.webp";
+
+const photos = [
+    {
+        id: 1,
+        src: Image1,
+        alt: "Cozy Cafe Interior",
+        title: "Urban Escapes",
+        subtitle: "Find your perfect spot",
+        className: "col-span-2 row-span-2",
+    },
+    {
+        id: 2,
+        src: Image2,
+        alt: "Luxury Hotel Room",
+        title: "Luxury Stays",
+        subtitle: "Unwind in comfort",
+        className: "col-span-1 row-span-1",
+    },
+    {
+        id: 3,
+        src: Image3,
+        alt: "Beach Sunset",
+        title: "Coastal Dreams",
+        subtitle: "Where sky meets sea",
+        className: "col-span-1 row-span-1",
+    },
+    {
+        id: 4,
+        src: Image4,
+        alt: "Mountain Landscape",
+        title: "Peak Adventures",
+        subtitle: "Reach new heights",
+        className: "col-span-1 row-span-2",
+    },
+    {
+        id: 5,
+        src: Image5,
+        alt: "Travel Adventure",
+        title: "Wild Journeys",
+        subtitle: "Explore the unknown",
+        className: "col-span-1 row-span-1",
+    },
+    {
+        id: 6,
+        src: Image6,
+        alt: "Tropical Paradise",
+        title: "Island Life",
+        subtitle: "Pure tranquility",
+        className: "col-span-2 row-span-1",
+    },
+    {
+        id: 7,
+        src: Image7,
+        alt: "City Skyline",
+        title: "City Lights",
+        subtitle: "Urban wonders",
+        className: "col-span-1 row-span-1",
+    },
+    {
+        id: 8,
+        src: Image8,
+        alt: "Coffee Morning View",
+        title: "Morning Rituals",
+        subtitle: "Start your day right",
+        className: "col-span-2 row-span-2",
+    },
+    {
+        id: 9,
+        src: Image9,
+        alt: "Vintage Travel",
+        title: "Timeless Roads",
+        subtitle: "Classic adventures",
+        className: "col-span-1 row-span-2",
+    },
+    {
+        id: 10,
+        src: Image10,
+        alt: "Wanderlust Exploration",
+        title: "Wanderlust",
+        subtitle: "Let curiosity lead",
+        className: "col-span-1 row-span-1",
+    },
+];
+---
+
+<Layout canonical={canonical}>
+    <Header solid={true} />
+    <section
+        class="py-20 bg-linear-to-br from-secondary via-secondary/90 to-primary relative overflow-hidden"
+    >
+        <!-- First -->
+        <div class="container mx-auto px-6 relative z-10 mt-16">
+            <div class="max-w-7xl mx-auto">
+                <header
+                    class="relative text-5xl font-bold text-white text-center mb-16"
+                >
+                    Gallery
+                    <span
+                        class="absolute top-14 left-1/2 -translate-x-1/2 w-44 h-1 bg-primary"
+                    ></span>
+                </header>
+                <p class="text-xl opacity-90 text-white text-center mb-12">
+                    Explore our curated collection of stunning images that
+                    capture the essence of travel and adventure.
+                </p>
+
+                <div class="grid grid-cols-4 auto-rows-[240px] gap-5">
+                    {
+                        photos.map((photo) => (
+                            <div
+                                class={`${photo.className} group cursor-pointer relative overflow-hidden rounded-3xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500`}
+                            >
+                                <div class="absolute inset-0 transition-transform duration-700 ease-out group-hover:rotate-[5deg] group-hover:scale-110">
+                                    <Image
+                                        src={photo.src}
+                                        alt={photo.alt}
+                                        width={1080}
+                                        height={720}
+                                        class="w-full h-full object-cover"
+                                        loading={"eager"}
+                                    />
+                                </div>
+
+                                {/* linear overlay */}
+                                <div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+
+                                {/* Content */}
+                                <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                                    <div class="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                                        <h3 class="text-white mb-1">
+                                            {photo.title}
+                                        </h3>
+                                        <p class="text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                            {photo.subtitle}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Shine effect */}
+                                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                                    <div class="absolute top-0 -left-full h-full w-1/2 bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-12 group-hover:left-full transition-all duration-1000" />
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <Footer />
+</Layout>
