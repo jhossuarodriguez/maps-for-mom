@@ -6,19 +6,19 @@ const features = [
         icon: Sparkles,
         title: "Handpicking Experiences",
         description:
-            "Destinations and experiences that match the traveler's desires, whether that's exploring hidden gems or a luxury spa weekend",
+            "Carefully curating experiences that align with the traveler’s intentions and travel style.",
     },
     {
         icon: Clock,
         title: "Creating a Cohesive Journey",
         description:
-            "We arrange the trip so it flows as one seamless adventure rather than a series of disconnected activities",
+            "Designing each trip to flow seamlessly as one intentional experience, rather than a series of disconnected activities.",
     },
     {
         icon: Heart,
         title: "Attention to Details",
         description:
-            "Ensuring the trip isn't just about ticking off destinations, but creating memories and stories with loved ones",
+            "Focusing on the little things,including a thoughtfully crafted itinerary, that transform a trip from a checklist into meaningful moments, lasting memories, and stories shared with loved ones.",
     },
 ];
 ---
@@ -28,17 +28,17 @@ const features = [
         <div class="text-center max-w-3xl mx-auto mb-16">
             <h2 class="mb-6">Travel Planning, Reimagined</h2>
             <p class="text-xl text-muted-foreground">
-                A travel curator focuses on the <span
-                    class="text-primary font-bold">personalization</span
+                We go beyond researching logistics and <span
+                    class="font-bold text-primary">destinations</span
+                >. We thoughtfully curate meaningful, feel-good <span
+                    class="font-bold text-primary">experiences</span
                 >
-                and <span class="text-primary font-bold">experience</span> of the
-                trip. They go beyond simply arranging logistics, curating unique
-                and memorable experiences tailored to the traveler's desires, whether
-                that's exploring hidden gems,
-                <span class="text-primary font-bold"
-                    >induspang in a luxury spa weekend</span
-                >, or embarking on a thrilling adventure. The key aspects of a
-                travel curator's role include:
+                designed around what you truly need. Whether that’s discovering peaceful
+                hidden gems, sinking into a <span class="font-bold text-primary"
+                    >luxury spa weekend</span
+                >, or saying yes to an adventure that lights you up. Every trip
+                is planned with intention, balance, and care. Our services
+                include:'
             </p>
         </div>
 
@@ -49,7 +49,9 @@ const features = [
                         <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-3 hover:rotate-0 transition-transform">
                             <feature.icon class="w-8 h-8 text-white" />
                         </div>
-                        <h3 class="mb-3">{feature.title}</h3>
+                        <h3 class="mb-3 font-bold text-primary">
+                            {feature.title}
+                        </h3>
                         <p class="text-muted-foreground">
                             {feature.description}
                         </p>
