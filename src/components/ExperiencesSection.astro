@@ -3,32 +3,44 @@ import { Users, Compass, Mountain, Plane, Heart, Camera } from "@lucide/astro";
 const experiences = [
     {
         icon: Compass,
-        title: "Tailored Escapes",
+        title: "Intentional Escapes",
+        description:
+            "Trips thoughtfully designed around your needs, pace, and intentions.",
         color: "from-primary to-primary/80",
     },
     {
         icon: Heart,
-        title: "Relaxation & Wellness",
+        title: "Rest & Renewal",
+        description:
+            "Wellness getaways that prioritize relaxation, balance, and recharging.",
         color: "from-secondary to-secondary/80",
     },
     {
         icon: Users,
         title: "Family Connection",
+        description:
+            "Experiences crafted to nurture presence, togetherness, and shared memories.",
         color: "from-primary to-primary/80",
     },
     {
         icon: Mountain,
-        title: "Adventure Experiences",
+        title: "Gentle Adventure",
+        description:
+            "Exploration, nature, and movement that feel energizing, not overwhelming.",
         color: "from-secondary to-secondary/80",
     },
     {
         icon: Plane,
-        title: "Convenience & Flexibility",
+        title: "Mindful Escapes",
+        description:
+            "Experiences that invite reflection, mindfulness, and the deeper connection with yourself and your surroundings.",
         color: "from-primary to-primary/80",
     },
     {
         icon: Camera,
-        title: "Luxury Spa Escapes",
+        title: "Cultural & Soulful Exploration",
+        description:
+            "Immersive experiences that inspire curiosity, connection, and meaningful engagement with local communities.",
         color: "from-secondary to-secondary/80",
     },
 ];
@@ -39,9 +51,8 @@ const experiences = [
         <div class="text-center mb-16">
             <h2 class="mb-4">Curated Experiences For Every Traveler</h2>
             <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-                We don't just book hotels and flights. We curate travel
-                itineraries with unforgettable experiences—beaches, hikes, spas,
-                girls trips, family adventures, and more
+                Here are some types of experiences we’re passionate about, for
+                your inspiration:
             </p>
         </div>
         <div
@@ -49,13 +60,16 @@ const experiences = [
         >
             {
                 experiences.map((exp) => (
-                    <div class="group text-center p-6 bg-white rounded-2xl hover:shadow-2xl transition-all hover:-translate-y-2">
+                    <div class="flex flex-col justify-center items-center group text-center p-6 bg-white rounded-2xl hover:shadow-2xl transition-all hover:-translate-y-2">
                         <div
                             class={`bg-linear-to-br ${exp.color} w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform`}
                         >
                             <exp.icon class="w-8 h-8 text-white" />
                         </div>
                         <h4 class="text-sm">{exp.title}</h4>
+                        <p class="text-xs text-muted-foreground mt-8">
+                            {exp.description}
+                        </p>
                     </div>
                 ))
             }
