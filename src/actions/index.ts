@@ -92,7 +92,7 @@ export const server = {
                         <div style="text-align: center; margin-bottom: 20px;">
                             <img 
                                 src="https://maps-for-mom.vercel.app/favicon.webp" 
-                                alt="Logo Maps of Moms" 
+                                alt="Logo Maps for Mom" 
                                 style="height: 40px; width: auto;"
                             />
                         </div>
@@ -108,7 +108,7 @@ export const server = {
                         </div>
                         
                         <p style="text-align: center; color: #999; font-size: 12px; margin-top: 20px;">
-                            © 2025 Maps of Moms. All rights reserved
+                            © 2025 Maps for Mom. All rights reserved
                         </p>
                     </div>
                 </div>
@@ -121,13 +121,13 @@ export const server = {
                         <div style="text-align: center; margin-bottom: 20px;">
                             <img 
                                 src="https://maps-for-mom.vercel.app/logo-email.png" 
-                                alt="Logo Maps of Moms" 
-                                style="height: 40px; width: auto; display: block; border: 0;"
+                                alt="Logo Maps for Mom" 
+                                style="height: 40px; width: auto; border: 0;"
                             />
                         </div>
 
                         <div style="background-color: white; padding: 30px; border-radius: 8px; border: 1px solid #e0e0e0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                            <h2 style="color: #333; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px;">New Trip Questionnaire 🚀</h2>
+                            <h2 style="color: #333; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px;">New Trip Questionnaire ✨</h2>
                             
                             <p style="color: #666; font-size: 14px;">
                                 <strong>From:</strong> ${safeName} <br>
@@ -225,7 +225,7 @@ export const server = {
                         </div>
                         
                         <p style="text-align: center; color: #999; font-size: 12px; margin-top: 20px;">
-                            Internal Notification • Maps of Moms System
+                            Maps for Mom
                         </p>
                     </div>
                 </div>
