@@ -127,7 +127,7 @@ export const server = {
                         </div>
 
                         <div style="background-color: white; padding: 30px; border-radius: 8px; border: 1px solid #e0e0e0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                            <h2 style="color: #333; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px;">New Trip Questionnaire ✨</h2>
+                            <h2 style="color: #333; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px; text-align: center;">New Trip Questionnaire ✨</h2>
                             
                             <p style="color: #666; font-size: 14px;">
                                 <strong>From:</strong> ${safeName} <br>
