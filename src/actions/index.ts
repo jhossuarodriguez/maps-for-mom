@@ -86,28 +86,31 @@ export const server = {
             const safeHealthConsiderations = escapeHtml(healthConsiderations);
 
             const MESSAGE_CONFIRMATION = `
-                <div style="font-family: sans-serif; background-color: #f5f5f5; padding: 40px 20px; border-radius: 10px">
-                    <div style="max-width: 600px; margin: 0 auto;">
-                        
+                <div style="font-family: 'Montserrat', Arial, sans-serif; background-color: #eee7df; padding: 48px 20px; color: #2a2a2a;">
+                    <div style="max-width: 720px; margin: 0 auto;">
                         <div style="text-align: center; margin-bottom: 20px;">
                             <img 
-                                src="https://maps-for-mom.vercel.app/favicon.webp" 
+                                src="https://maps-for-mom.vercel.app/logo-email.png" 
                                 alt="Logo Maps for Mom" 
-                                style="height: 40px; width: auto;"
+                                style="height: 44px; width: auto; border: 0;"
                             />
                         </div>
 
-                        <div style="background-color: white; padding: 30px; border-radius: 8px; border: 1px solid #e0e0e0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                            <h2 style="color: #333; margin-top: 0;">Your Journey Starts Here!</h2>
-                            <p style="color: #666; line-height: 1.5;">
-                                We’ve received your questionnaire ✨
-                                Our team will review your details and reach out within 24 hours to begin curating your personalized travel experience.<br />
-                                <br />
-                                Sit back, relax… we’ve got the planning covered.
-                            </p>
+                        <div style="background-color: #ffffff; border: 1px solid #ece3db; border-radius: 16px; box-shadow: 0 18px 40px rgba(0,0,0,0.06); overflow: hidden;">
+                            <div style="height: 8px; background: linear-gradient(90deg, #D19789, #95a799);"></div>
+                            <div style="padding: 32px;">
+                                <h2 style="color: #D19789; margin: 0 0 16px; font-size: 24px; letter-spacing: 0.4px; font-weight: 800;">Your Journey Starts Here! ✨</h2>
+                                <p style="color: #4a4a4a; font-size: 15px; line-height: 1.7; margin: 0;">
+                                    We've received your questionnaire ✨<br />
+                                    <br />
+                                    Our team will review your details and reach out within 24 hours to begin curating your personalized travel experience.<br />
+                                    <br />
+                                    <span style="color: #2a2a2a; font-weight: 600;">Sit back, relax… we've got the planning covered.</span>
+                                </p>
+                            </div>
                         </div>
                         
-                        <p style="text-align: center; color: #999; font-size: 12px; margin-top: 20px;">
+                        <p style="text-align: center; color: #7a7a7a; font-size: 12px; margin-top: 18px;">
                             © 2025 Maps for Mom. All rights reserved
                         </p>
                     </div>
@@ -115,116 +118,119 @@ export const server = {
             `;
 
             const MESSAGE_RECEIVED = `
-                <div style="font-family: sans-serif; background-color: #f5f5f5; padding: 40px 20px; border-radius: 10px">
-                    <div style="max-width: 600px; margin: 0 auto;">
-                        
+                <div style="font-family: 'Montserrat', Arial, sans-serif; background-color: #eee7df; padding: 48px 20px; color: #2a2a2a;">
+                    <div style="max-width: 720px; margin: 0 auto;">
                         <div style="text-align: center; margin-bottom: 20px;">
                             <img 
                                 src="https://maps-for-mom.vercel.app/logo-email.png" 
                                 alt="Logo Maps for Mom" 
-                                style="height: 40px; width: auto; border: 0;"
+                                style="height: 44px; width: auto; border: 0;"
                             />
                         </div>
 
-                        <div style="background-color: white; padding: 30px; border-radius: 8px; border: 1px solid #e0e0e0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                            <h2 style="color: #333; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px; text-align: center;">New Trip Questionnaire ✨</h2>
-                            
-                            <p style="color: #666; font-size: 14px;">
-                                <strong>From:</strong> ${safeName} <br>
-                                <strong>Email:</strong> <a href="mailto:${email}" style="color: #007bff;">${safeEmail}</a>
-                            </p>
-
-                            <div style="margin-bottom: 25px;">
-                                <h3 style="color: #e66d57; font-size: 16px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Traveler Information</h3>
-                                <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-                                    <tr>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #888; width: 40%;">Phone:</td>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #333; font-weight: 500;">${safePhone}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #888;">Travelers:</td>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #333; font-weight: 500;">${safeTravelers}</td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <div style="margin-bottom: 25px;">
-                                <h3 style="color: #e66d57; font-size: 16px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Trip Basics</h3>
-                                <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-                                    <tr>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #888; width: 40%;">Dates:</td>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #333; font-weight: 500;">${safeTravelDates}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #888;">Destination:</td>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #333; font-weight: 500;">${safeDestination}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #888;">Budget:</td>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #333; font-weight: 500;">${safeBudget}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #888;">Accommodation:</td>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #333; font-weight: 500;">${safeAccommodation}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #888;">Transport:</td>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #333; font-weight: 500;">${safeTransportation}</td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <div style="margin-bottom: 25px;">
-                                <h3 style="color: #e66d57; font-size: 16px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Vision & Interests</h3>
+                        <div style="background-color: #ffffff; border: 1px solid #ece3db; border-radius: 16px; box-shadow: 0 18px 40px rgba(0,0,0,0.06); overflow: hidden;">
+                            <div style="height: 8px; background: linear-gradient(90deg, #D19789, #95a799);"></div>
+                            <div style="padding: 32px;">
+                                <h2 style="color: #D19789; margin: 0 0 12px; font-size: 22px; letter-spacing: 0.4px; text-align: left;">New Trip Questionnaire ✨</h2>
                                 
-                                <div style="margin-bottom: 15px;">
-                                    <span style="display: block; color: #888; font-size: 12px; margin-bottom: 4px;">Reason for trip:</span>
-                                    <div style="color: #333; background: #f9f9f9; padding: 10px; border-radius: 4px;">${safeReason}</div>
+                                <p style="color: #4a4a4a; font-size: 14px; margin: 0 0 16px; line-height: 1.6;">
+                                    <span style="display: inline-block; padding: 10px 14px; background: #f7f2ed; border: 1px solid #ece3db; border-radius: 999px; color: #2a2a2a; font-weight: 600;">
+                                        From: ${safeName} • <a href="mailto:${email}" style="color: #D19789; text-decoration: none;">${safeEmail}</a>
+                                    </span>
+                                </p>
+
+                                <div style="margin-bottom: 22px;">
+                                    <h3 style="color: #95a799; font-size: 15px; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.6px;">Traveler Information</h3>
+                                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                                        <tr>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #7a7a7a; width: 40%;">Phone:</td>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #2a2a2a; font-weight: 600;">${safePhone}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #7a7a7a;">Travelers:</td>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #2a2a2a; font-weight: 600;">${safeTravelers}</td>
+                                        </tr>
+                                    </table>
                                 </div>
 
-                                <div style="margin-bottom: 15px;">
-                                    <span style="display: block; color: #888; font-size: 12px; margin-bottom: 4px;">Excited about:</span>
-                                    <div style="color: #333; background: #f9f9f9; padding: 10px; border-radius: 4px;">${safeExcitedActivities}</div>
+                                <div style="margin-bottom: 22px;">
+                                    <h3 style="color: #95a799; font-size: 15px; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.6px;">Trip Basics</h3>
+                                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                                        <tr>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #7a7a7a; width: 40%;">Dates:</td>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #2a2a2a; font-weight: 600;">${safeTravelDates}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #7a7a7a;">Destination:</td>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #2a2a2a; font-weight: 600;">${safeDestination}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #7a7a7a;">Budget:</td>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #2a2a2a; font-weight: 600;">${safeBudget}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #7a7a7a;">Accommodation:</td>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #2a2a2a; font-weight: 600;">${safeAccommodation}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #7a7a7a;">Transport:</td>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #2a2a2a; font-weight: 600;">${safeTransportation}</td>
+                                        </tr>
+                                    </table>
                                 </div>
 
-                                <div style="margin-bottom: 15px;">
-                                    <span style="display: block; color: #888; font-size: 12px; margin-bottom: 4px;">Activities to avoid:</span>
-                                    <div style="color: #333; background: #f9f9f9; padding: 10px; border-radius: 4px;">${safeAvoidActivities || "None provided"}</div>
+                                <div style="margin-bottom: 22px;">
+                                    <h3 style="color: #95a799; font-size: 15px; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.6px;">Vision & Interests</h3>
+                                    
+                                    <div style="margin-bottom: 14px;">
+                                        <span style="display: block; color: #7a7a7a; font-size: 12px; margin-bottom: 4px;">Reason for trip:</span>
+                                        <div style="color: #2a2a2a; background: #fdfaf8; padding: 12px; border-radius: 10px; border: 1px solid #ece3db;">${safeReason}</div>
+                                    </div>
+
+                                    <div style="margin-bottom: 14px;">
+                                        <span style="display: block; color: #7a7a7a; font-size: 12px; margin-bottom: 4px;">Excited about:</span>
+                                        <div style="color: #2a2a2a; background: #fdfaf8; padding: 12px; border-radius: 10px; border: 1px solid #ece3db;">${safeExcitedActivities}</div>
+                                    </div>
+
+                                    <div style="margin-bottom: 14px;">
+                                        <span style="display: block; color: #7a7a7a; font-size: 12px; margin-bottom: 4px;">Activities to avoid:</span>
+                                        <div style="color: #2a2a2a; background: #fdfaf8; padding: 12px; border-radius: 10px; border: 1px solid #ece3db;">${safeAvoidActivities || "None provided"}</div>
+                                    </div>
+
+                                    <div style="margin-bottom: 14px;">
+                                        <span style="display: block; color: #7a7a7a; font-size: 12px; margin-bottom: 4px;">Ideal Getaway Description:</span>
+                                        <div style="color: #2a2a2a; background: #fdfaf8; padding: 12px; border-radius: 10px; border: 1px solid #ece3db; font-style: italic;">"${safeIdealGetaway}"</div>
+                                    </div>
+                                    
+                                    <div style="margin-bottom: 14px;">
+                                        <span style="display: block; color: #7a7a7a; font-size: 12px; margin-bottom: 4px;">Wellness Requests:</span>
+                                        <div style="color: #2a2a2a; background: #fdfaf8; padding: 12px; border-radius: 10px; border: 1px solid #ece3db;">${safeWellnessExperiences || "None provided"}</div>
+                                    </div>
+
+                                    <div style="margin-bottom: 14px;">
+                                        <span style="display: block; color: #7a7a7a; font-size: 12px; margin-bottom: 4px;">Open to suggestions?</span>
+                                        <span style="color: #D19789; font-weight: 700;">${safeSuggestions}</span>
+                                    </div>
                                 </div>
 
-                                <div style="margin-bottom: 15px;">
-                                    <span style="display: block; color: #888; font-size: 12px; margin-bottom: 4px;">Ideal Getaway Description:</span>
-                                    <div style="color: #333; background: #f9f9f9; padding: 10px; border-radius: 4px; font-style: italic;">"${safeIdealGetaway}"</div>
-                                </div>
-                                
-                                <div style="margin-bottom: 15px;">
-                                    <span style="display: block; color: #888; font-size: 12px; margin-bottom: 4px;">Wellness Requests:</span>
-                                    <div style="color: #333; background: #f9f9f9; padding: 10px; border-radius: 4px;">${safeWellnessExperiences || "None provided"}</div>
+                                <div style="margin-bottom: 8px;">
+                                    <h3 style="color: #95a799; font-size: 15px; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.6px;">Health & Dietary</h3>
+                                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                                        <tr>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #7a7a7a; width: 40%;">Allergies:</td>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #2a2a2a;">${safeAllergies || "None"}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #7a7a7a; vertical-align: top;">Health Notes:</td>
+                                            <td style="padding: 8px 0; border-bottom: 1px solid #f1e8df; color: #2a2a2a;">${safeHealthConsiderations || "None"}</td>
+                                        </tr>
+                                    </table>
                                 </div>
 
-                                <div style="margin-bottom: 15px;">
-                                    <span style="display: block; color: #888; font-size: 12px; margin-bottom: 4px;">Open to suggestions?</span>
-                                    <span style="color: #333; font-weight: bold;">${safeSuggestions}</span>
-                                </div>
                             </div>
-
-                            <div style="margin-bottom: 10px;">
-                                <h3 style="color: #e66d57; font-size: 16px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Health & Dietary</h3>
-                                <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-                                    <tr>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #888; width: 40%;">Allergies:</td>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #333;">${safeAllergies || "None"}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #888; vertical-align: top;">Health Notes:</td>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #333;">${safeHealthConsiderations || "None"}</td>
-                                    </tr>
-                                </table>
-                            </div>
-
                         </div>
                         
-                        <p style="text-align: center; color: #999; font-size: 12px; margin-top: 20px;">
+                        <p style="text-align: center; color: #7a7a7a; font-size: 12px; margin-top: 18px;">
                             Maps for Mom
                         </p>
                     </div>
@@ -233,14 +239,14 @@ export const server = {
             try {
                 const data = await Promise.all([
                     resend.emails.send({
-                        from: 'Maps For Mom <onboarding@resend.dev>',
-                        to: 'jhossuarodriguezz@gmail.com',
+                        from: 'Maps For Mom <hello@mapsformom.com>',
+                        to: 'hello@mapsformom.com',
                         subject: `New Trip Inquiry: ${safeName}`,
                         html: MESSAGE_RECEIVED
                     }),
 
                     resend.emails.send({
-                        from: 'Maps For Mom <onboarding@resend.dev>',
+                        from: 'Maps For Mom <hello@mapsformom.com>',
                         to: email,
                         subject: `Your journey starts here! ✈️`,
                         html: MESSAGE_CONFIRMATION
