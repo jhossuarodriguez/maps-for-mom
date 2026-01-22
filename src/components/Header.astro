@@ -39,32 +39,24 @@ const { solid = false } = Astro.props;
             <a
                 href="/gallery"
                 class="text-white hover:text-primary hero-nav-link"
-                title="Explore our curated travel experiences"
-                aria-label="Explore our curated travel experiences"
             >
                 Gallery
             </a>
             <a
                 href="/#process"
                 class="text-white hover:text-primary hero-nav-link"
-                title="Learn about our unique travel planning process"
-                aria-label="Learn about our unique travel planning process"
             >
                 Process
             </a>
             <a
                 href="/about"
                 class="text-white hover:text-primary hero-nav-link"
-                title="Learn more about our company and services"
-                aria-label="Learn more about our company and services"
             >
                 About
             </a>
             <a
                 href="/#contact"
                 class="text-white hover:text-primary hero-nav-link"
-                title="Get in touch with us"
-                aria-label="Get in touch with us"
             >
                 Contact
             </a>
@@ -78,13 +70,35 @@ const { solid = false } = Astro.props;
 
 <style>
     .hero-header {
-        background: transparent;
-        border-bottom: 1px solid transparent;
-        box-shadow: 0 0 0 rgba(15, 23, 42, 0);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+        transition: all 0.3s ease;
+    }
 
-        animation: header-blur-scroll 0.3s ease-out both;
-        animation-timeline: scroll(root);
-        animation-range: 0 200px;
+    .hero-header-icon {
+        color: var(--color-primary);
+    }
+
+    @media (min-width: 768px) {
+        .hero-header {
+            background: transparent;
+            border-bottom: 1px solid transparent;
+            box-shadow: 0 0 0 rgba(15, 23, 42, 0);
+            backdrop-filter: blur(0px);
+
+            animation: header-blur-scroll 0.3s ease-out both;
+            animation-timeline: scroll(root);
+            animation-range: 0 200px;
+        }
+
+        .hero-nav-link {
+            animation: hero-nav-link-scroll 0.3s ease-out both;
+            animation-timeline: scroll(root);
+            animation-range: 0 200px;
+            transition: color 0.2s ease;
+        }
     }
 
     @keyframes header-blur-scroll {
@@ -93,7 +107,6 @@ const { solid = false } = Astro.props;
             background: rgba(255, 255, 255, 0);
             border-bottom-color: transparent;
             box-shadow: 0 0 0 rgba(15, 23, 42, 0);
-            padding-bottom: 0;
         }
         100% {
             backdrop-filter: blur(16px);
@@ -101,28 +114,6 @@ const { solid = false } = Astro.props;
             border-bottom-color: rgba(148, 163, 184, 0.4);
             box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
         }
-    }
-
-    .hero-header-icon {
-        animation: hero-icon-scroll 0.3s ease-out both;
-        animation-timeline: scroll(root);
-        animation-range: 0 200px;
-    }
-
-    @keyframes hero-icon-scroll {
-        0% {
-            color: white;
-        }
-        100% {
-            color: var(--color-primary);
-        }
-    }
-
-    .hero-nav-link {
-        animation: hero-nav-link-scroll 0.3s ease-out both;
-        animation-timeline: scroll(root);
-        animation-range: 0 200px;
-        transition: color 0.2s ease;
     }
 
     @keyframes hero-nav-link-scroll {
@@ -138,17 +129,12 @@ const { solid = false } = Astro.props;
         animation: none;
         backdrop-filter: none;
         background: #ffffff;
-        border-bottom-color: rgba(148, 163, 184, 0.4);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.4);
         box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
     }
 
     .hero-header--solid .hero-nav-link {
         animation: none;
         color: var(--color-foreground);
-    }
-
-    .hero-header--solid .hero-header-icon {
-        animation: none;
-        color: var(--color-primary);
     }
 </style>
