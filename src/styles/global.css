@@ -9,18 +9,6 @@
   --font-sans: 'Montserrat', system-ui;
 }
 
-html, body {
-  height: 100%;
-  min-height: 100%;
-  min-height: 100dvh;
-}
-
-@supports not (min-height: 100dvh) {
-  html, body {
-    min-height: -webkit-fill-available;
-  }
-}
-
 @font-face {
   font-display: swap;
   font-family: 'Montserrat';
