@@ -9,11 +9,16 @@ import ProcessSection from "@/components/ProcessSection.astro";
 import VideoSection from "@/components/VideoSection.astro";
 import Layout from "@/layouts/Layout.astro";
 
-const canonical = "https://mapsformom.com/";
 export const prerender = true;
+
+const seo = {
+	canonical: "https://mapsformom.com/",
+	title: "Maps For Mom - Your Dream Trip, Perfectly Planned",
+	description: "Maps For Mom curates thoughtful, personalized trips for busy lives. With a special love for wellness and restorative travel, we handle every detail so you can rest, reset, and feel renewed."
+};
 ---
 
-<Layout canonical={canonical}>
+<Layout {...seo}>
 	<Header />
 	<div class="min-h-screen">
 		<main>
