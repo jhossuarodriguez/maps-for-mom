@@ -5,13 +5,18 @@ import Footer from "@/components/Footer.astro";
 import { actions } from "astro:actions";
 
 export const prerender = false;
-const canonical = "https://mapsformom.com/getIntinerary";
+
+const seo = {
+	canonical: "https://mapsformom.com/getIntinerary",
+	title: "Plan Your Trip - Travel Questionnaire | Maps For Mom",
+	description: "Start planning your dream vacation! Fill out our travel questionnaire and we'll create a personalized itinerary tailored to your family's needs and interests."
+};
 
 // Get action result from form submission
 const result = Astro.getActionResult?.(actions.send);
 ---
 
-<Layout canonical={canonical}>
+<Layout {...seo}>
     <Header solid={true} />
     <section
         class="py-20 bg-linear-to-br from-secondary via-secondary/90 to-primary relative overflow-hidden"
