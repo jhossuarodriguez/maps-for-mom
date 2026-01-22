@@ -1,6 +1,7 @@
 ---
 import "@/styles/global.css";
 import { ClientRouter } from "astro:transitions";
+import ProgressBar from "astro-vtbot/components/ProgressBar.astro";
 ---
 
 <!doctype html>
@@ -37,6 +38,7 @@ import { ClientRouter } from "astro:transitions";
 		<meta name="robots" content="follow, index" />
 		<meta name="theme-color" content="#D19789" />
 		<ClientRouter />
+		<ProgressBar />
 	</head>
 	<body>
 		<slot />
