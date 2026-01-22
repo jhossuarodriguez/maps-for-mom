@@ -5,7 +5,7 @@ import bgImage from "@/assets/background.webp";
 ---
 
 <section
-  class="relative h-screen w-full flex items-center justify-center overflow-hidden"
+  class="hero-section relative w-full flex items-center justify-center overflow-hidden"
 >
   <div class="absolute inset-0 z-0">
     <Image
@@ -62,3 +62,20 @@ import bgImage from "@/assets/background.webp";
     </div>
   </div>
 </section>
+
+<style>
+  .hero-section {
+    /* Fallback para navegadores antiguos */
+    min-height: 100vh;
+    min-height: 100svh;
+    /* Para iOS Safari - usa el viewport pequeño que excluye la barra de navegación */
+    height: 100svh;
+  }
+
+  /* Fallback para navegadores sin soporte de svh */
+  @supports not (min-height: 100svh) {
+    .hero-section {
+      min-height: -webkit-fill-available;
+    }
+  }
+</style>
