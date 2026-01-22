@@ -1,9 +1,17 @@
 ---
-import { Menu } from "@lucide/astro";
+import { Menu, X } from "@lucide/astro";
 import { Image } from "astro:assets";
 import Logo from "@/assets/Logo.webp";
 
 const { solid = false } = Astro.props;
+
+const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/gallery", label: "Gallery" },
+    { href: "/#process", label: "Process" },
+    { href: "/about", label: "About" },
+    { href: "/#contact", label: "Contact" },
+];
 ---
 
 <header
@@ -28,45 +36,181 @@ const { solid = false } = Astro.props;
         </div>
 
         <nav class="hidden md:flex items-center gap-8">
-            <a
-                href="/"
-                class="text-white hover:text-primary hero-nav-link"
-                title="Go to Home"
-                aria-label="Go to Home"
-            >
-                Home
-            </a>
-            <a
-                href="/gallery"
-                class="text-white hover:text-primary hero-nav-link"
-            >
-                Gallery
-            </a>
-            <a
-                href="/#process"
-                class="text-white hover:text-primary hero-nav-link"
-            >
-                Process
-            </a>
-            <a
-                href="/about"
-                class="text-white hover:text-primary hero-nav-link"
-            >
-                About
-            </a>
-            <a
-                href="/#contact"
-                class="text-white hover:text-primary hero-nav-link"
-            >
-                Contact
-            </a>
+            {
+                navLinks.map((link) => (
+                    <a
+                        href={link.href}
+                        class="text-white hover:text-primary hero-nav-link"
+                        title={`Go to ${link.label}`}
+                        aria-label={`Go to ${link.label}`}
+                    >
+                        {link.label}
+                    </a>
+                ))
+            }
         </nav>
 
-        <button class="md:hidden cursor-pointer" aria-label="Menu">
-            <Menu class="w-6 h-6 hero-header-icon" />
+        <!-- Mobile Menu Button -->
+        <button
+            id="mobile-menu-btn"
+            class="md:hidden cursor-pointer relative z-60"
+            aria-label="Toggle Menu"
+            aria-expanded="false"
+        >
+            <Menu
+                id="menu-icon"
+                class="w-6 h-6 hero-header-icon transition-all duration-300"
+            />
+            <X
+                id="close-icon"
+                class="w-6 h-6 hero-header-icon absolute top-0 left-0 opacity-0 scale-0 transition-all duration-300"
+            />
         </button>
     </div>
 </header>
+
+<!-- Mobile Menu Overlay -->
+<div
+    id="mobile-menu-overlay"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"
+    aria-hidden="true"
+>
+</div>
+
+<!-- Mobile Menu Panel -->
+<nav
+    id="mobile-menu"
+    class="fixed top-0 right-0 h-full w-[280px] max-w-[85vw] bg-white z-50 transform translate-x-full transition-transform duration-300 ease-out shadow-2xl md:hidden"
+    aria-label="Mobile navigation"
+>
+    <div class="flex flex-col h-full pt-24 pb-8 px-6">
+        <!-- Navigation Links -->
+        <div class="flex flex-col gap-2">
+            {
+                navLinks.map((link, index) => (
+                    <a
+                        href={link.href}
+                        class="mobile-nav-link group flex items-center gap-3 py-4 px-4 text-lg font-medium text-gray-800 hover:text-primary hover:bg-primary/5 rounded-xl transition-all duration-200"
+                        style={`--delay: ${index * 50}ms`}
+                    >
+                        <span class="w-2 h-2 rounded-full bg-primary/30 group-hover:bg-primary group-hover:scale-125 transition-all duration-200" />
+                        {link.label}
+                    </a>
+                ))
+            }
+        </div>
+
+        <!-- CTA Button -->
+        <div class="mt-auto pt-6 border-t border-gray-100">
+            <a
+                href="/getIntinerary"
+                class="mobile-nav-link flex items-center justify-center gap-2 w-full py-4 px-6 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+                style="--delay: 250ms"
+            >
+                Start Your Journey
+                <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<script>
+    function initMobileMenu() {
+        const menuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const overlay = document.getElementById("mobile-menu-overlay");
+        const menuIcon = document.getElementById("menu-icon");
+        const closeIcon = document.getElementById("close-icon");
+        const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+        let isOpen = false;
+
+        function openMenu() {
+            isOpen = true;
+            mobileMenu?.classList.remove("translate-x-full");
+            mobileMenu?.classList.add("translate-x-0");
+            overlay?.classList.remove("opacity-0", "pointer-events-none");
+            overlay?.classList.add("opacity-100", "pointer-events-auto");
+            menuIcon?.classList.add("opacity-0", "scale-0");
+            closeIcon?.classList.remove("opacity-0", "scale-0");
+            closeIcon?.classList.add("opacity-100", "scale-100");
+            menuBtn?.setAttribute("aria-expanded", "true");
+            document.body.style.overflow = "hidden";
+
+            // Animate links
+            mobileNavLinks.forEach((link, index) => {
+                setTimeout(() => {
+                    link.classList.add("mobile-nav-link--visible");
+                }, index * 50);
+            });
+        }
+
+        function closeMenu() {
+            isOpen = false;
+            mobileMenu?.classList.add("translate-x-full");
+            mobileMenu?.classList.remove("translate-x-0");
+            overlay?.classList.add("opacity-0", "pointer-events-none");
+            overlay?.classList.remove("opacity-100", "pointer-events-auto");
+            menuIcon?.classList.remove("opacity-0", "scale-0");
+            closeIcon?.classList.add("opacity-0", "scale-0");
+            closeIcon?.classList.remove("opacity-100", "scale-100");
+            menuBtn?.setAttribute("aria-expanded", "false");
+            document.body.style.overflow = "";
+
+            // Reset link animations
+            mobileNavLinks.forEach((link) => {
+                link.classList.remove("mobile-nav-link--visible");
+            });
+        }
+
+        function toggleMenu() {
+            if (isOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        }
+
+        menuBtn?.addEventListener("click", toggleMenu);
+        overlay?.addEventListener("click", closeMenu);
+
+        // Close menu when clicking a link
+        mobileNavLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                setTimeout(closeMenu, 150);
+            });
+        });
+
+        // Close on escape key
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && isOpen) {
+                closeMenu();
+            }
+        });
+
+        // Close on resize to desktop
+        window.addEventListener("resize", () => {
+            if (window.innerWidth >= 768 && isOpen) {
+                closeMenu();
+            }
+        });
+    }
+
+    // Initialize on page load and after view transitions
+    initMobileMenu();
+    document.addEventListener("astro:after-swap", initMobileMenu);
+</script>
 
 <style>
     .hero-header {
@@ -136,5 +280,26 @@ const { solid = false } = Astro.props;
     .hero-header--solid .hero-nav-link {
         animation: none;
         color: var(--color-foreground);
+    }
+
+    /* Mobile Menu Styles */
+    .mobile-nav-link {
+        opacity: 0;
+        transform: translateX(20px);
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease,
+            background-color 0.2s ease,
+            color 0.2s ease;
+    }
+
+    .mobile-nav-link--visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Z-index for mobile menu button above panel */
+    .z-60 {
+        z-index: 60;
     }
 </style>
