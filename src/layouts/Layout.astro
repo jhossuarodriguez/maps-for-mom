@@ -2,41 +2,74 @@
 import "@/styles/global.css";
 import { ClientRouter } from "astro:transitions";
 import ProgressBar from "astro-vtbot/components/ProgressBar.astro";
+
+interface Props {
+	canonical: string;
+	title?: string;
+	description?: string;
+	noindex?: boolean;
+}
+
+const SITE_URL = "https://mapsformom.com";
+const DEFAULT_TITLE = "Maps For Mom - Your Dream Trip, Perfectly Planned";
+const DEFAULT_DESCRIPTION =
+	"Maps For Mom curates thoughtful, personalized trips for busy lives. With a special love for wellness and restorative travel, we handle every detail so you can rest, reset, and feel renewed.";
+
+const {
+	canonical,
+	title = DEFAULT_TITLE,
+	description = DEFAULT_DESCRIPTION,
+	noindex = false,
+} = Astro.props;
+
+// Ensure canonical is absolute URL
+const canonicalURL = canonical.startsWith("http")
+	? canonical
+	: `${SITE_URL}${canonical}`;
+const ogImageURL = `${SITE_URL}/og.webp`;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/webp" href="/favicon.webp" />
-		<title>Maps for mom - Your Dream Trip, Perfectly Planned</title>
+
+		<!-- Primary Meta Tags -->
+		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<meta name="author" content="Maps For Mom" />
+
+		<!-- Robots -->
 		<meta
-			name="og:title"
-			content="Maps for mom - Your Dream Trip, Perfectly Planned"
+			name="robots"
+			content={noindex ? "noindex, nofollow" : "index, follow"}
 		/>
-		<meta
-			name="description"
-			content="Maps for mom - Your Dream Trip, Perfectly Planned"
-		/>
-		<meta name="og:image" content="/og.webp" />
-		<meta
-			name="og:description"
-			content="Maps for mom - Your Dream Trip, Perfectly Planned"
-		/>
-		<meta property="og:site_name" content="Maps for mom" />
-		<meta name="og:type" content="website" />
-		<meta name="og:url" content="https://mapsformom.com/" />
-		<meta
-			property="twitter:description"
-			content="Maps for mom - Your Dream Trip, Perfectly Planned"
-		/>
+
+		<!-- Canonical URL - Always present -->
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImageURL} />
+		<meta property="og:site_name" content="Maps For Mom" />
+		<meta property="og:locale" content="en_US" />
+
+		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:image" content="/og.webp" />
-		<meta name="twitter:title" content="Maps for mom" />
-		<meta name="author" content="Jhossua Roa Rodriguez" />
-		<meta name="robots" content="follow, index" />
+		<meta name="twitter:url" content={canonicalURL} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageURL} />
+
+		<!-- Theme -->
 		<meta name="theme-color" content="#ffffff" />
+
 		<ClientRouter />
 		<ProgressBar />
 	</head>
