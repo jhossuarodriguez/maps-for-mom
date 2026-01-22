@@ -1,20 +1,28 @@
 ---
 import { ArrowRight } from "@lucide/astro";
+import { Image } from "astro:assets";
+import bgImage from "@/assets/background.webp";
 ---
 
 <section
-  class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden"
+  class="relative h-dvh min-h-[600px] flex items-center justify-center overflow-hidden"
 >
-  <div
-    class="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105 bg-[url('/src/assets/background.webp')]"
-  >
+  <div class="absolute inset-0 z-0">
+    <Image
+      src={bgImage}
+      alt="Paisaje de viaje relajante"
+      class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+      loading={"eager"}
+      fetchpriority={"high"}
+    />
+
     <div
-      class="absolute inset-0 bg-linear-to-r from-black/70 via-black/50 to-transparent"
+      class="absolute inset-0 bg-linear-to-r from-black/70 via-black/50 to-transparent z-10"
     >
     </div>
   </div>
 
-  <div class="relative z-10 text-white px-6 max-w-5xl mx-auto text-center">
+  <div class="relative z-20 text-white px-6 max-w-5xl mx-auto text-center">
     <div class="animate-fade-in">
       <div
         class="inline-block mb-6 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30"
@@ -46,7 +54,7 @@ import { ArrowRight } from "@lucide/astro";
     </div>
   </div>
 
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-20">
     <div
       class="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2"
     >
