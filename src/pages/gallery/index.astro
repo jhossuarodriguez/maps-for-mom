@@ -2,10 +2,15 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-
-export const prerender = false;
-const canonical = "https://mapsformom.com/gallery";
 import { Image } from "astro:assets";
+
+export const prerender = true;
+
+const seo = {
+	canonical: "https://mapsformom.com/gallery",
+	title: "Travel Gallery - Inspiring Destinations | Maps For Mom",
+	description: "Explore our curated collection of stunning travel destinations. From coastal dreams to mountain adventures, find inspiration for your next family getaway."
+};
 import Image1 from "@/assets/bento_gallery/1.webp";
 import Image2 from "@/assets/bento_gallery/2.webp";
 import Image3 from "@/assets/bento_gallery/3.webp";
@@ -101,7 +106,7 @@ const photos = [
 ];
 ---
 
-<Layout canonical={canonical}>
+<Layout {...seo}>
     <Header solid={true} />
     <section
         class="py-20 bg-linear-to-br from-secondary via-secondary/90 to-primary relative overflow-hidden"
