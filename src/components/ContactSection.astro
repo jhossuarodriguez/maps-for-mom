@@ -4,7 +4,6 @@ import WhatsApp from "@/assets/icons/whatsapp.svg";
 ---
 
 <section
-    id="contact"
     class="py-20 bg-linear-to-br from-secondary via-secondary/90 to-primary"
 >
     <div class="container mx-auto px-6">
@@ -18,53 +17,122 @@ import WhatsApp from "@/assets/icons/whatsapp.svg";
             </div>
 
             <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl">
-                <div class="space-y-4">
+                <div
+                    id="success-msg"
+                    class="hidden mb-6 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg"
+                >
+                    <p class="font-semibold">
+                        ✓ Questionnaire submitted successfully. We'll be in
+                        touch soon!
+                    </p>
+                </div>
+
+                <div
+                    id="error-msg"
+                    class="hidden mb-6 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg"
+                >
+                    <p class="font-semibold">✗Failed to send Email</p>
+                    <p id="error-text" class="text-sm mt-1">
+                        Please try again later.
+                    </p>
+                </div>
+
+                <form id="contact-form" class="space-y-4">
                     <div class="grid md:grid-cols-2 gap-4">
                         <input
                             type="text"
                             placeholder="Your Name"
+                            name="name"
                             class="w-full p-4 bg-muted rounded-xl border-none outline-none focus:ring-2 focus:ring-primary transition-all"
+                            required
                         />
                         <input
                             type="email"
+                            name="email"
                             placeholder="Your Email"
                             class="w-full p-4 bg-muted rounded-xl border-none outline-none focus:ring-2 focus:ring-primary transition-all"
+                            required
                         />
                     </div>
                     <input
                         type="text"
+                        name="destination"
                         placeholder="Where do you want to go?"
                         class="w-full p-4 bg-muted rounded-xl border-none outline-none focus:ring-2 focus:ring-primary transition-all"
+                        required
                     />
                     <textarea
-                        placeholder="Tell us about your dream trip... What are you looking for? When are you thinking of traveling?"
+                        placeholder="Tell us about your dream trip..."
+                        name="message"
                         rows={5}
                         class="w-full p-4 bg-muted rounded-xl border-none outline-none resize-none focus:ring-2 focus:ring-primary transition-all"
-                    ></textarea>
+                        required></textarea>
+
                     <button
-                        class="w-full bg-linear-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-8 py-5 rounded-xl transition-all hover:shadow-xl flex items-center justify-center gap-2 group cursor-pointer"
+                        id="submit-btn"
+                        class="w-full bg-linear-to-r from-primary to-secondary text-white px-8 py-5 rounded-xl transition-all flex items-center justify-center gap-2 group cursor-pointer"
+                        type="submit"
                     >
                         <span>Send Message</span>
                         <Send
                             class="w-5 h-5 group-hover:translate-x-1 transition-transform"
                         />
                     </button>
-                </div>
-
-                <div class="mt-6 text-center">
-                    <p class="text-sm text-muted-foreground mb-2">
-                        Or send us a message directly at
-                    </p>
-                    <a
-                        href="https://wa.me/18138032579"
-                        class="text-primary hover:text-primary/80 flex items-center justify-center gap-2 transition-colors"
-                        aria-label="Send a message to https://wa.me/18138032579"
-                    >
-                        <WhatsApp class="size-4" />
-                        WhatsApp
-                    </a>
-                </div>
+                    <div class="mt-6 text-center">
+                        <p class="text-sm text-muted-foreground mb-2">
+                            Or send us a message directly at
+                        </p>
+                        <a
+                            href="https://wa.me/18138032579"
+                            class="text-primary hover:text-primary/80 flex items-center justify-center gap-2 transition-colors"
+                            aria-label="Send a message to https://wa.me/18138032579"
+                        >
+                            <WhatsApp class="size-4" />
+                            WhatsApp
+                        </a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    import { actions } from "astro:actions";
+
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+    const successMsg = document.getElementById("success-msg");
+    const errorMsg = document.getElementById("error-msg");
+    const submitBtn = document.getElementById(
+        "submit-btn",
+    ) as HTMLButtonElement;
+
+    form?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "<span>Sending...</span>";
+        }
+
+        successMsg?.classList.add("hidden");
+        errorMsg?.classList.add("hidden");
+
+        const formData = new FormData(form);
+
+        const { data, error } = await actions.shortQuestionarySend(formData);
+
+        if (data?.success) {
+            successMsg?.classList.remove("hidden");
+            form.reset();
+        } else {
+            console.error(error);
+            errorMsg?.classList.remove("hidden");
+        }
+
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = "<span>Send Message</span>";
+        }
+    });
+</script>
