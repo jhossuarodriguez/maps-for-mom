@@ -2,7 +2,7 @@
 import { Menu, X } from "@lucide/astro";
 import { Image } from "astro:assets";
 import Logo from "@/assets/Logo.webp";
-
+import ArrowRight from "@/assets/icons/ArrowRight.svg";
 const { solid = false } = Astro.props;
 
 const navLinks = [
@@ -29,6 +29,9 @@ const navLinks = [
                         src={Logo}
                         alt="Maps For Mom Logo"
                         width={170}
+                        densities={[1, 2, 3]}
+                        quality="max"
+                        format="webp"
                         loading="eager"
                     />
                 </a>
@@ -108,18 +111,7 @@ const navLinks = [
                 style="--delay: 250ms"
             >
                 Start Your Journey
-                <svg
-                    class="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                </svg>
+                <ArrowRight class="w-5 h-5" />
             </a>
         </div>
     </div>
