@@ -24,3 +24,9 @@
   font-weight: 800;
   src: url('/fonts/montserrat-v31-latin-800.woff2') format('woff2');
 }
+
+/* Progress Bar - Override astro-vtbot styles */
+.swup-progress-bar {
+  background: var(--color-primary) !important;
+  height: 3px !important;
+}
