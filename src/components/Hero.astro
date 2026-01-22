@@ -7,11 +7,11 @@ import bgImage from "@/assets/background.webp";
 <section
   class="relative h-dvh flex items-center justify-center overflow-hidden"
 >
-  <div class="absolute inset-0 z-0">
+  <div class="absolute inset-0 z-0 h-full">
     <Image
       src={bgImage}
       alt="Paisaje de viaje relajante"
-      class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+      class="w-full h-full object-cover md:transition-transform md:duration-700 md:hover:scale-105"
       loading={"eager"}
       fetchpriority={"high"}
     />
