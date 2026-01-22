@@ -8,11 +8,16 @@ import { Image } from "astro:assets";
 import Profile from "@/assets/CTAImages/Shirley/1.webp";
 import Profile2 from "@/assets/CTAImages/Karyn/1.webp";
 
-export const prerender = false;
-const canonical = "https://mapsformom.com/about";
+export const prerender = true;
+
+const seo = {
+	canonical: "https://mapsformom.com/about",
+	title: "About Us - Meet the Moms Behind Maps For Mom",
+	description: "Meet Shirley and Karyn, the passionate moms behind Maps For Mom. With backgrounds in hospitality and a love for travel, we create personalized itineraries for busy families."
+};
 ---
 
-<Layout canonical={canonical}>
+<Layout {...seo}>
     <Header solid={true} />
     <section
         class="py-20 bg-linear-to-br from-secondary via-secondary/90 to-primary relative overflow-hidden"
