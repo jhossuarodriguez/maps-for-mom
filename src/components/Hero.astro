@@ -2,6 +2,7 @@
 import { ArrowRight } from "@lucide/astro";
 import { Image } from "astro:assets";
 import bgImage from "@/assets/background.webp";
+import M from "@/assets/bouncing_logo.webp";
 ---
 
 <section
@@ -54,28 +55,29 @@ import bgImage from "@/assets/background.webp";
     </div>
   </div>
 
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-20">
-    <div
-      class="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2"
-    >
-      <div class="w-1 h-3 bg-white/50 rounded-full"></div>
-    </div>
+  <div class="absolute bottom-2 left-1/2 -translate-x-1/2 animate-bounce z-20">
+    <Image
+      src={M}
+      alt="Logo M"
+      class="w-20 h-20 opacity-55"
+      loading={"eager"}
+    />
   </div>
-</section>
 
-<style>
-  .hero-section {
-    /* Fallback para navegadores antiguos */
-    min-height: 100vh;
-    min-height: 100svh;
-    /* Para iOS Safari - usa el viewport pequeño que excluye la barra de navegación */
-    height: 100svh;
-  }
-
-  /* Fallback para navegadores sin soporte de svh */
-  @supports not (min-height: 100svh) {
+  <style>
     .hero-section {
-      min-height: -webkit-fill-available;
+      /* Fallback para navegadores antiguos */
+      min-height: 100vh;
+      min-height: 100svh;
+      /* Para iOS Safari - usa el viewport pequeño que excluye la barra de navegación */
+      height: 100svh;
     }
-  }
-</style>
+
+    /* Fallback para navegadores sin soporte de svh */
+    @supports not (min-height: 100svh) {
+      .hero-section {
+        min-height: -webkit-fill-available;
+      }
+    }
+  </style>
+</section>
