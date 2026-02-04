@@ -26,6 +26,10 @@ export const server = {
             wellnessExperiences: z.string().optional(),
             allergies: z.string().optional(),
             healthConsiderations: z.string().optional(),
+            // Honeypot field - should always be empty for real users
+            website: z.string().optional(),
+            // Cloudflare Turnstile token
+            'cf-turnstile-response': z.string().min(1, "Security verification required"),
         }),
 
         handler: async (input) => {
@@ -46,8 +50,49 @@ export const server = {
                 wellnessExperiences,
                 suggestions,
                 allergies,
-                healthConsiderations
+                healthConsiderations,
+                website, // Honeypot field
+                'cf-turnstile-response': turnstileToken,
             } = input;
+
+            // Honeypot validation - if filled, it's a bot
+            if (website && website.trim() !== '') {
+                // Silently reject spam without revealing why
+                throw new ActionError({
+                    code: 'BAD_REQUEST',
+                    message: "An error occurred. Please try again.",
+                });
+            }
+
+            // Cloudflare Turnstile verification
+            const turnstileSecret = import.meta.env.TURNSTILE_SECRET_KEY;
+            if (!turnstileSecret) {
+                throw new ActionError({
+                    code: 'INTERNAL_SERVER_ERROR',
+                    message: "Security configuration is missing",
+                });
+            }
+
+            const turnstileResponse = await fetch(
+                'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+                {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({
+                        secret: turnstileSecret,
+                        response: turnstileToken,
+                    }),
+                }
+            );
+
+            const turnstileResult = await turnstileResponse.json();
+
+            if (!turnstileResult.success) {
+                throw new ActionError({
+                    code: 'BAD_REQUEST',
+                    message: "Security verification failed. Please try again.",
+                });
+            }
 
             // Validate RESEND_API_KEY
             if (!import.meta.env.RESEND_API_KEY) {
