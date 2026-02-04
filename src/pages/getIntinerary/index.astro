@@ -4,12 +4,14 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { actions } from "astro:actions";
 
+const SITE_KEY = import.meta.env.TURNSTILE_SITE_KEY;
 export const prerender = false;
 
 const seo = {
-	canonical: "https://mapsformom.com/getIntinerary",
-	title: "Plan Your Trip - Travel Questionnaire | Maps For Mom",
-	description: "Start planning your dream vacation! Fill out our travel questionnaire and we'll create a personalized itinerary tailored to your family's needs and interests."
+    canonical: "https://mapsformom.com/getIntinerary",
+    title: "Plan Your Trip - Travel Questionnaire | Maps For Mom",
+    description:
+        "Start planning your dream vacation! Fill out our travel questionnaire and we'll create a personalized itinerary tailored to your family's needs and interests.",
 };
 
 // Get action result from form submission
@@ -73,6 +75,18 @@ const result = Astro.getActionResult?.(actions.send);
                 }
 
                 <form method="POST" action={actions.send}>
+                    <!-- Honeypot field - hidden from real users, bots will fill it -->
+                    <div class="hidden" aria-hidden="true">
+                        <label for="website">Website</label>
+                        <input
+                            type="text"
+                            id="website"
+                            name="website"
+                            tabindex="-1"
+                            autocomplete="off"
+                        />
+                    </div>
+
                     <!-- Traveler Information Section -->
                     <div class="mb-8">
                         <h3
@@ -488,7 +502,12 @@ const result = Astro.getActionResult?.(actions.send);
                             steps to curate your personalized itinerary.
                         </p>
                     </div>
-
+                    <div
+                        class="cf-turnstile"
+                        data-sitekey={SITE_KEY}
+                        data-theme="light"
+                    >
+                    </div>
                     <!-- Submit Button -->
                     <div class="pt-4">
                         <button
@@ -504,3 +523,6 @@ const result = Astro.getActionResult?.(actions.send);
     </section>
     <Footer />
 </Layout>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer
+></script>
