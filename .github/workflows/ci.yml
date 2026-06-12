@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs: 
+  build:
+    runs-on: ubuntu-24.04
+#GitHub crea una maquina Linux temporal
+
+    steps:
+      - uses: actions/checkout@v6
+      #Descarga archivos en esa maquina
+
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 11.3.0
+      #Instala pnpm (No viene por default en github)
+
+      - uses: actions/setup-node@v6
+        with: 
+          node-version: 24.15
+          cache: "pnpm"
+        # Instala Node 20 y activa caché para que sea más rápido
+        
+      - run: pnpm install --frozen-lockfile
+       # Instala tus dependencias exactas del lockfile
+       # --frozen-lockfile = falla si alguien cambió package.json sin actualizar el lock
+
+      - run: pnpm lint
+
+      - run: pnpm build
