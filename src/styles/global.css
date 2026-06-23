@@ -1,32 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #D19789;
+  --color-primary: #d19789;
   --color-secondary: #95a799;
   --color-thirdary: #eee7df;
   --color-muted: #ece3db;
   --color-foreground: oklch(0.145 0 0);
-  --font-sans: 'Montserrat', system-ui;
+  --font-sans: "Montserrat", system-ui;
 }
 
 @font-face {
   font-display: swap;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/montserrat-v31-latin-regular.woff2') format('woff2');
+  src: url("/fonts/montserrat-v31-latin-regular.woff2") format("woff2");
 }
 
 @font-face {
   font-display: swap;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 800;
-  src: url('/fonts/montserrat-v31-latin-800.woff2') format('woff2');
+  src: url("/fonts/montserrat-v31-latin-800.woff2") format("woff2");
 }
 
 /* Progress Bar - Override astro-vtbot styles */
 .swup-progress-bar {
-  background: var(--color-primary) !important;
-  height: 3px !important;
+  background: var(--color-primary);
+  height: 3px;
 }

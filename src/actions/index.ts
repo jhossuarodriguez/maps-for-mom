@@ -1,137 +1,137 @@
 import { ActionError, defineAction } from "astro:actions";
-import { z } from 'astro:schema';
+import { z } from "astro:schema";
 import { Resend } from "resend";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 export const server = {
-    send: defineAction({
-        accept: 'form',
-        input: z.object({
-            image: z.instanceof(File).optional(),
-            name: z.string().min(1, "Name is required"),
-            email: z.string().email("Invalid email address"),
-            phone: z.string().min(1, "Phone number is required"),
-            travelers: z.string().min(1, "Travelers information is required"),
-            travelDates: z.string().min(1, "Travel dates are required"),
-            destination: z.string().min(1, "Destination is required"),
-            budget: z.string().min(1, "Budget is required"),
-            accommodation: z.string().min(1, "Accommodation preference is required"),
-            transportation: z.string().min(1, "Transportation preference is required"),
-            reason: z.string().min(1, "Reason for trip is required"),
-            excitedActivities: z.string().min(1, "Excited activities are required"),
-            avoidActivities: z.string().optional(),
-            suggestions: z.string().min(1, "Suggestion preference is required"),
-            idealGetaway: z.string().min(1, "Ideal getaway description is required"),
-            wellnessExperiences: z.string().optional(),
-            allergies: z.string().optional(),
-            healthConsiderations: z.string().optional(),
-            // Honeypot field - should always be empty for real users
-            website: z.string().optional(),
-            // Cloudflare Turnstile token
-            'cf-turnstile-response': z.string().min(1, "Security verification required"),
-        }),
+  send: defineAction({
+    accept: "form",
+    input: z.object({
+      image: z.instanceof(File).optional(),
+      name: z.string().min(1, "Name is required"),
+      email: z.string().email("Invalid email address"),
+      phone: z.string().min(1, "Phone number is required"),
+      travelers: z.string().min(1, "Travelers information is required"),
+      travelDates: z.string().min(1, "Travel dates are required"),
+      destination: z.string().min(1, "Destination is required"),
+      budget: z.string().min(1, "Budget is required"),
+      accommodation: z.string().min(1, "Accommodation preference is required"),
+      transportation: z.string().min(1, "Transportation preference is required"),
+      reason: z.string().min(1, "Reason for trip is required"),
+      excitedActivities: z.string().min(1, "Excited activities are required"),
+      avoidActivities: z.string().optional(),
+      suggestions: z.string().min(1, "Suggestion preference is required"),
+      idealGetaway: z.string().min(1, "Ideal getaway description is required"),
+      wellnessExperiences: z.string().optional(),
+      allergies: z.string().optional(),
+      healthConsiderations: z.string().optional(),
+      // Honeypot field - should always be empty for real users
+      website: z.string().optional(),
+      // Cloudflare Turnstile token
+      "cf-turnstile-response": z.string().min(1, "Security verification required"),
+    }),
 
-        handler: async (input) => {
-            const {
-                name,
-                email,
-                phone,
-                travelers,
-                travelDates,
-                destination,
-                budget,
-                accommodation,
-                transportation,
-                reason,
-                excitedActivities,
-                avoidActivities,
-                idealGetaway,
-                wellnessExperiences,
-                suggestions,
-                allergies,
-                healthConsiderations,
-                website, // Honeypot field
-                'cf-turnstile-response': turnstileToken,
-            } = input;
+    handler: async (input) => {
+      const {
+        name,
+        email,
+        phone,
+        travelers,
+        travelDates,
+        destination,
+        budget,
+        accommodation,
+        transportation,
+        reason,
+        excitedActivities,
+        avoidActivities,
+        idealGetaway,
+        wellnessExperiences,
+        suggestions,
+        allergies,
+        healthConsiderations,
+        website, // Honeypot field
+        "cf-turnstile-response": turnstileToken,
+      } = input;
 
-            // Honeypot validation - if filled, it's a bot
-            if (website && website.trim() !== '') {
-                // Silently reject spam without revealing why
-                throw new ActionError({
-                    code: 'BAD_REQUEST',
-                    message: "An error occurred. Please try again.",
-                });
-            }
+      // Honeypot validation - if filled, it's a bot
+      if (website && website.trim() !== "") {
+        // Silently reject spam without revealing why
+        throw new ActionError({
+          code: "BAD_REQUEST",
+          message: "An error occurred. Please try again.",
+        });
+      }
 
-            // Cloudflare Turnstile verification
-            const turnstileSecret = import.meta.env.TURNSTILE_SECRET_KEY;
-            if (!turnstileSecret) {
-                throw new ActionError({
-                    code: 'INTERNAL_SERVER_ERROR',
-                    message: "Security configuration is missing",
-                });
-            }
+      // Cloudflare Turnstile verification
+      const turnstileSecret = import.meta.env.TURNSTILE_SECRET_KEY;
+      if (!turnstileSecret) {
+        throw new ActionError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Security configuration is missing",
+        });
+      }
 
-            const turnstileResponse = await fetch(
-                'https://challenges.cloudflare.com/turnstile/v0/siteverify',
-                {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams({
-                        secret: turnstileSecret,
-                        response: turnstileToken,
-                    }),
-                }
-            );
+      const turnstileResponse = await fetch(
+        "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({
+            secret: turnstileSecret,
+            response: turnstileToken,
+          }),
+        },
+      );
 
-            const turnstileResult = await turnstileResponse.json();
+      const turnstileResult = await turnstileResponse.json();
 
-            if (!turnstileResult.success) {
-                throw new ActionError({
-                    code: 'BAD_REQUEST',
-                    message: "Security verification failed. Please try again.",
-                });
-            }
+      if (!turnstileResult.success) {
+        throw new ActionError({
+          code: "BAD_REQUEST",
+          message: "Security verification failed. Please try again.",
+        });
+      }
 
-            // Validate RESEND_API_KEY
-            if (!import.meta.env.RESEND_API_KEY) {
-                throw new ActionError({
-                    code: 'INTERNAL_SERVER_ERROR',
-                    message: "Email service configuration is missing",
-                });
-            }
+      // Validate RESEND_API_KEY
+      if (!import.meta.env.RESEND_API_KEY) {
+        throw new ActionError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Email service configuration is missing",
+        });
+      }
 
-            // Escape HTML to prevent XSS in email templates
-            const escapeHtml = (text: string | undefined): string => {
-                if (!text) return '';
-                return text
-                    .replace(/&/g, '&amp;')
-                    .replace(/</g, '&lt;')
-                    .replace(/>/g, '&gt;')
-                    .replace(/"/g, '&quot;')
-                    .replace(/'/g, '&#039;');
-            };
+      // Escape HTML to prevent XSS in email templates
+      const escapeHtml = (text: string | undefined): string => {
+        if (!text) return "";
+        return text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      };
 
-            const safeName = escapeHtml(name);
-            const safeEmail = escapeHtml(email);
-            const safePhone = escapeHtml(phone);
-            const safeTravelers = escapeHtml(travelers);
-            const safeTravelDates = escapeHtml(travelDates);
-            const safeDestination = escapeHtml(destination);
-            const safeBudget = escapeHtml(budget);
-            const safeAccommodation = escapeHtml(accommodation);
-            const safeTransportation = escapeHtml(transportation);
-            const safeReason = escapeHtml(reason);
-            const safeExcitedActivities = escapeHtml(excitedActivities);
-            const safeAvoidActivities = escapeHtml(avoidActivities);
-            const safeIdealGetaway = escapeHtml(idealGetaway);
-            const safeWellnessExperiences = escapeHtml(wellnessExperiences);
-            const safeSuggestions = escapeHtml(suggestions);
-            const safeAllergies = escapeHtml(allergies);
-            const safeHealthConsiderations = escapeHtml(healthConsiderations);
+      const safeName = escapeHtml(name);
+      const safeEmail = escapeHtml(email);
+      const safePhone = escapeHtml(phone);
+      const safeTravelers = escapeHtml(travelers);
+      const safeTravelDates = escapeHtml(travelDates);
+      const safeDestination = escapeHtml(destination);
+      const safeBudget = escapeHtml(budget);
+      const safeAccommodation = escapeHtml(accommodation);
+      const safeTransportation = escapeHtml(transportation);
+      const safeReason = escapeHtml(reason);
+      const safeExcitedActivities = escapeHtml(excitedActivities);
+      const safeAvoidActivities = escapeHtml(avoidActivities);
+      const safeIdealGetaway = escapeHtml(idealGetaway);
+      const safeWellnessExperiences = escapeHtml(wellnessExperiences);
+      const safeSuggestions = escapeHtml(suggestions);
+      const safeAllergies = escapeHtml(allergies);
+      const safeHealthConsiderations = escapeHtml(healthConsiderations);
 
-            const MESSAGE_CONFIRMATION = `
+      const MESSAGE_CONFIRMATION = `
                 <div style="font-family: 'Montserrat', Arial, sans-serif; background-color: #eee7df; padding: 48px 20px; color: #2a2a2a;">
                     <div style="max-width: 720px; margin: 0 auto;">
                         <div style="text-align: center; margin-bottom: 20px;">
@@ -163,7 +163,7 @@ export const server = {
                 </div>
             `;
 
-            const MESSAGE_RECEIVED = `
+      const MESSAGE_RECEIVED = `
                 <div style="font-family: 'Montserrat', Arial, sans-serif; background-color: #eee7df; padding: 48px 20px; color: #2a2a2a;">
                     <div style="max-width: 720px; margin: 0 auto;">
                         <div style="text-align: center; margin-bottom: 20px;">
@@ -282,95 +282,93 @@ export const server = {
                     </div>
                 </div>
             `;
-            try {
-                const data = await Promise.all([
-                    resend.emails.send({
-                        from: 'Maps For Mom <hello@mapsformom.com>',
-                        to: 'hello@mapsformom.com',
-                        subject: `New Trip Inquiry: ${safeName}`,
-                        html: MESSAGE_RECEIVED
-                    }),
+      try {
+        const data = await Promise.all([
+          resend.emails.send({
+            from: "Maps For Mom <hello@mapsformom.com>",
+            to: "hello@mapsformom.com",
+            subject: `New Trip Inquiry: ${safeName}`,
+            html: MESSAGE_RECEIVED,
+          }),
 
-                    resend.emails.send({
-                        from: 'Maps For Mom <hello@mapsformom.com>',
-                        to: email,
-                        subject: `Your journey starts here! ✈️`,
-                        html: MESSAGE_CONFIRMATION
-                    }),
-                ]);
+          resend.emails.send({
+            from: "Maps For Mom <hello@mapsformom.com>",
+            to: email,
+            subject: `Your journey starts here! ✈️`,
+            html: MESSAGE_CONFIRMATION,
+          }),
+        ]);
 
-                // Verify both emails were sent successfully
-                const [adminEmail, userEmail] = data;
+        // Verify both emails were sent successfully
+        const [adminEmail, userEmail] = data;
 
-                if (adminEmail.error || userEmail.error) {
-                    throw new ActionError({
-                        code: 'INTERNAL_SERVER_ERROR',
-                        message: adminEmail.error?.message || userEmail.error?.message || "Failed to send email",
-                    });
-                }
-
-                return {
-                    success: true,
-                    message: "Questionnaire submitted successfully. We'll be in touch soon!",
-                };
-
-            } catch (error) {
-                // If it's already an ActionError, re-throw it
-                if (error instanceof ActionError) {
-                    throw error;
-                }
-
-                // Log the error for debugging (in production, use proper logging)
-                console.error("Email sending error:", error);
-
-                throw new ActionError({
-                    code: 'INTERNAL_SERVER_ERROR',
-                    message: error instanceof Error ? error.message : "Failed to send email. Please try again later.",
-                });
-            }
+        if (adminEmail.error || userEmail.error) {
+          throw new ActionError({
+            code: "INTERNAL_SERVER_ERROR",
+            message:
+              adminEmail.error?.message || userEmail.error?.message || "Failed to send email",
+          });
         }
+
+        return {
+          success: true,
+          message: "Questionnaire submitted successfully. We'll be in touch soon!",
+        };
+      } catch (error) {
+        // If it's already an ActionError, re-throw it
+        if (error instanceof ActionError) {
+          throw error;
+        }
+
+        // Log the error for debugging (in production, use proper logging)
+        console.error("Email sending error:", error);
+
+        throw new ActionError({
+          code: "INTERNAL_SERVER_ERROR",
+          message:
+            error instanceof Error
+              ? error.message
+              : "Failed to send email. Please try again later.",
+        });
+      }
+    },
+  }),
+
+  shortQuestionarySend: defineAction({
+    accept: "form",
+    input: z.object({
+      name: z.string().min(1, "Name is required"),
+      email: z.string().email("Invalid email address"),
+      destination: z.string().min(1, "Destination is required"),
+      message: z.string().min(1, "Message is required"),
     }),
 
-    shortQuestionarySend: defineAction({
-        accept: 'form',
-        input: z.object({
-            name: z.string().min(1, "Name is required"),
-            email: z.string().email("Invalid email address"),
-            destination: z.string().min(1, "Destination is required"),
-            message: z.string().min(1, "Message is required")
-        }),
+    handler: async (input) => {
+      const { name, email, destination, message } = input;
 
-        handler: async (input) => {
-            const {
-                name,
-                email,
-                destination,
-                message
-            } = input;
+      if (!import.meta.env.RESEND_API_KEY) {
+        throw new ActionError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Email service configuration is missing",
+        });
+      }
 
-            if (!import.meta.env.RESEND_API_KEY) {
-                throw new ActionError({
-                    code: 'INTERNAL_SERVER_ERROR',
-                    message: "Email service configuration is missing",
-                });
-            }
+      const escapeHtml = (text: string | undefined): string => {
+        if (!text) return "";
+        return text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      };
 
-            const escapeHtml = (text: string | undefined): string => {
-                if (!text) return '';
-                return text
-                    .replace(/&/g, '&amp;')
-                    .replace(/</g, '&lt;')
-                    .replace(/>/g, '&gt;')
-                    .replace(/"/g, '&quot;')
-                    .replace(/'/g, '&#039;');
-            };
+      const safeName = escapeHtml(name);
+      const safeEmail = escapeHtml(email);
+      const safeDestination = escapeHtml(destination);
+      const safeMessage = escapeHtml(message);
 
-            const safeName = escapeHtml(name);
-            const safeEmail = escapeHtml(email);
-            const safeDestination = escapeHtml(destination);
-            const safeMessage = escapeHtml(message);
-
-            const MESSAGE_CONFIRMATION = `
+      const MESSAGE_CONFIRMATION = `
                 <div style="font-family: 'Montserrat', Arial, sans-serif; background-color: #eee7df; padding: 48px 20px; color: #2a2a2a;">
                     <div style="max-width: 720px; margin: 0 auto;">
                         <div style="text-align: center; margin-bottom: 20px;">
@@ -400,9 +398,9 @@ export const server = {
                         </p>
                     </div>
                 </div>
-            `
+            `;
 
-            const MESSAGE_RECEIVED = `
+      const MESSAGE_RECEIVED = `
                 <div style="font-family: 'Montserrat', Arial, sans-serif; background-color: #eee7df; padding: 48px 20px; color: #2a2a2a;">
                     <div style="max-width: 720px; margin: 0 auto;">
                         <div style="text-align: center; margin-bottom: 20px;">
@@ -451,52 +449,55 @@ export const server = {
                         </p>
                     </div>
                 </div>
-            `
+            `;
 
-            try {
-                const data = await Promise.all([
-                    resend.emails.send({
-                        from: 'Maps For Mom <hello@mapsformom.com>',
-                        to: 'mapformoms.24@gmail.com',
-                        subject: `New Trip Inquiry: ${safeName}`,
-                        html: MESSAGE_RECEIVED
-                    }),
+      try {
+        const data = await Promise.all([
+          resend.emails.send({
+            from: "Maps For Mom <hello@mapsformom.com>",
+            to: "mapformoms.24@gmail.com",
+            subject: `New Trip Inquiry: ${safeName}`,
+            html: MESSAGE_RECEIVED,
+          }),
 
-                    resend.emails.send({
-                        from: 'Maps For Mom <hello@mapsformom.com>',
-                        to: email,
-                        subject: `Your journey starts here! ✈️`,
-                        html: MESSAGE_CONFIRMATION
-                    }),
-                ]);
+          resend.emails.send({
+            from: "Maps For Mom <hello@mapsformom.com>",
+            to: email,
+            subject: `Your journey starts here! ✈️`,
+            html: MESSAGE_CONFIRMATION,
+          }),
+        ]);
 
-                const [adminEmail, userEmail] = data;
+        const [adminEmail, userEmail] = data;
 
-                if (adminEmail.error || userEmail.error) {
-                    throw new ActionError({
-                        code: "INTERNAL_SERVER_ERROR",
-                        message: adminEmail.error?.message || userEmail.error?.message || "Failed to send Email"
-                    })
-                }
+        if (adminEmail.error || userEmail.error) {
+          throw new ActionError({
+            code: "INTERNAL_SERVER_ERROR",
+            message:
+              adminEmail.error?.message || userEmail.error?.message || "Failed to send Email",
+          });
+        }
 
-                return {
-                    success: true,
-                    message: "Questionnaire submitted successfully. We'll be in touch soon!"
-                };
-            } catch (error) {
-                if (error instanceof ActionError) {
-                    throw error;
-                }
+        return {
+          success: true,
+          message: "Questionnaire submitted successfully. We'll be in touch soon!",
+        };
+      } catch (error) {
+        if (error instanceof ActionError) {
+          throw error;
+        }
 
-                // Log the error for debugging (in production, use proper logging)
-                console.error("Email sending error:", error);
+        // Log the error for debugging (in production, use proper logging)
+        console.error("Email sending error:", error);
 
-                throw new ActionError({
-                    code: 'INTERNAL_SERVER_ERROR',
-                    message: error instanceof Error ? error.message : "Failed to send email. Please try again later.",
-                });
-            }
-        },
-
-    })
+        throw new ActionError({
+          code: "INTERNAL_SERVER_ERROR",
+          message:
+            error instanceof Error
+              ? error.message
+              : "Failed to send email. Please try again later.",
+        });
+      }
+    },
+  }),
 };

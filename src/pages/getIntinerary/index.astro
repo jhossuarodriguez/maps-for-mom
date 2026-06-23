@@ -1,17 +1,17 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import Header from "@/components/Header.astro";
-import Footer from "@/components/Footer.astro";
 import { actions } from "astro:actions";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import Layout from "@/layouts/Layout.astro";
 
 const SITE_KEY = import.meta.env.TURNSTILE_SITE_KEY;
 export const prerender = false;
 
 const seo = {
-    canonical: "https://mapsformom.com/getIntinerary",
-    title: "Plan Your Trip - Travel Questionnaire | Maps For Mom",
-    description:
-        "Start planning your dream vacation! Fill out our travel questionnaire and we'll create a personalized itinerary tailored to your family's needs and interests.",
+  canonical: "https://mapsformom.com/getIntinerary",
+  title: "Plan Your Trip - Travel Questionnaire | Maps For Mom",
+  description:
+    "Start planning your dream vacation! Fill out our travel questionnaire and we'll create a personalized itinerary tailored to your family's needs and interests.",
 };
 
 // Get action result from form submission
