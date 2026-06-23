@@ -1,25 +1,27 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import Header from "@/components/Header.astro";
-import Footer from "@/components/Footer.astro";
 import { Image } from "astro:assets";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import Layout from "@/layouts/Layout.astro";
 
 export const prerender = true;
 
 const seo = {
-	canonical: "https://mapsformom.com/gallery",
-	title: "Travel Gallery - Inspiring Destinations | Maps For Mom",
-	description: "Explore our curated collection of stunning travel destinations. From coastal dreams to mountain adventures, find inspiration for your next family getaway."
+  canonical: "https://mapsformom.com/gallery",
+  title: "Travel Gallery - Inspiring Destinations | Maps For Mom",
+  description:
+    "Explore our curated collection of stunning travel destinations. From coastal dreams to mountain adventures, find inspiration for your next family getaway.",
 };
-import Image1 from "@/assets/bento_gallery/1.webp";
-import Image2 from "@/assets/bento_gallery/2.webp";
-import Image3 from "@/assets/bento_gallery/3.webp";
+
+import Image1 from "@/assets/bento_gallery/1.avif";
+import Image2 from "@/assets/bento_gallery/2.avif";
+import Image3 from "@/assets/bento_gallery/3.avif";
 import Image4 from "@/assets/bento_gallery/4.avif";
-import Image5 from "@/assets/bento_gallery/5.webp";
-import Image6 from "@/assets/bento_gallery/6.webp";
+import Image5 from "@/assets/bento_gallery/5.avif";
+import Image6 from "@/assets/bento_gallery/6.avif";
 import Image7 from "@/assets/bento_gallery/7.avif";
-import Image8 from "@/assets/bento_gallery/8.webp";
-import Image9 from "@/assets/bento_gallery/9.webp";
+import Image8 from "@/assets/bento_gallery/8.avif";
+import Image9 from "@/assets/bento_gallery/9.avif";
 import Image10 from "@/assets/bento_gallery/10.avif";
 import Image11 from "@/assets/bento_gallery/11.avif";
 import Image12 from "@/assets/bento_gallery/12.avif";
@@ -45,281 +47,299 @@ import Image31 from "@/assets/bento_gallery/31.avif";
 import Image32 from "@/assets/bento_gallery/32.avif";
 import Image33 from "@/assets/bento_gallery/33.avif";
 import Image34 from "@/assets/bento_gallery/34.avif";
+import Image35 from "@/assets/bento_gallery/35.avif";
+import Image36 from "@/assets/bento_gallery/36.avif";
 
 const photos = [
-    {
-        id: 1,
-        src: Image1,
-        alt: "Cozy Cafe Interior",
-        title: "Urban Escapes",
-        subtitle: "Find your perfect spot",
-        className: "col-span-1 md:col-span-2 md:row-span-2",
-    },
-    {
-        id: 2,
-        src: Image2,
-        alt: "Luxury Hotel Room",
-        title: "Luxury Stays",
-        subtitle: "Unwind in comfort",
-        className: "col-span-1",
-    },
-    {
-        id: 3,
-        src: Image3,
-        alt: "Beach Sunset",
-        title: "Coastal Dreams",
-        subtitle: "Where sky meets sea",
-        className: "col-span-1",
-        objectPosition: "center 25%",
-    },
-    {
-        id: 4,
-        src: Image4,
-        alt: "Mountain Landscape",
-        title: "Peak Adventures",
-        subtitle: "Reach new heights",
-        className: "col-span-1 md:row-span-2",
-    },
-    {
-        id: 5,
-        src: Image5,
-        alt: "Travel Adventure",
-        title: "Wild Journeys",
-        subtitle: "Explore the unknown",
-        className: "col-span-1",
-    },
-    {
-        id: 6,
-        src: Image6,
-        alt: "Tropical Paradise",
-        title: "Island Life",
-        subtitle: "Pure tranquility",
-        className: "col-span-1",
-    },
-    {
-        id: 7,
-        src: Image7,
-        alt: "City Skyline",
-        title: "City Lights",
-        subtitle: "Urban wonders",
-        className: "col-span-1",
-    },
-    {
-        id: 8,
-        src: Image8,
-        alt: "Coffee Morning View",
-        title: "Morning Rituals",
-        subtitle: "Start your day right",
-        className: "col-span-1",
-    },
-    {
-        id: 9,
-        src: Image9,
-        alt: "Vintage Travel",
-        title: "Timeless Roads",
-        subtitle: "Classic adventures",
-        className: "col-span-1",
-    },
-    {
-        id: 10,
-        src: Image10,
-        alt: "Wanderlust Exploration",
-        title: "Wanderlust",
-        subtitle: "Let curiosity lead",
-        className: "col-span-1",
-    },
-    {
-        id: 11,
-        src: Image11,
-        alt: "Scenic Mountain Trail",
-        title: "Alpine Treks",
-        subtitle: "Into the wild",
-        className: "col-span-1",
-    },
-    {
-        id: 12,
-        src: Image12,
-        alt: "Coastal Cliff View",
-        title: "Ocean Bluffs",
-        subtitle: "Where land meets sea",
-        className: "col-span-1",
-    },
-    {
-        id: 13,
-        src: Image13,
-        alt: "Sunset Over Hills",
-        title: "Golden Hours",
-        subtitle: "Nature's palette",
-        className: "col-span-1 md:col-span-2 md:row-span-2",
-    },
-    {
-        id: 14,
-        src: Image14,
-        alt: "Historic City Street",
-        title: "Cobblestone Tales",
-        subtitle: "Steps through time",
-        className: "col-span-1",
-    },
-    {
-        id: 15,
-        src: Image15,
-        alt: "Lush Green Valley",
-        title: "Verdant Valleys",
-        subtitle: "Embrace the calm",
-        className: "col-span-1",
-    },
-    {
-        id: 16,
-        src: Image16,
-        alt: "Night Sky Over Mountains",
-        title: "Stellar Nights",
-        subtitle: "Above the clouds",
-        className: "col-span-1",
-    },
-    {
-        id: 17,
-        src: Image17,
-        alt: "Rural Countryside",
-        title: "Country Roads",
-        subtitle: "Simple pleasures",
-        className: "col-span-1 md:row-span-2",
-    },
-    {
-        id: 18,
-        src: Image18,
-        alt: "Waterfall Cascade",
-        title: "Falling Waters",
-        subtitle: "Nature's symphony",
-        className: "col-span-1",
-    },
-    {
-        id: 19,
-        src: Image19,
-        alt: "Harbor at Dusk",
-        title: "Harbor Lights",
-        subtitle: "Sailing into sunset",
-        className: "col-span-1",
-    },
-    {
-        id: 20,
-        src: Image20,
-        alt: "Desert Dunes",
-        title: "Desert Wanderer",
-        subtitle: "Endless horizons",
-        className: "col-span-1",
-    },
-    {
-        id: 21,
-        src: Image21,
-        alt: "Autumn Forest Path",
-        title: "Golden Canopy",
-        subtitle: "Walk among colors",
-        className: "col-span-1 md:col-span-2",
-    },
-    {
-        id: 22,
-        src: Image22,
-        alt: "Lake Reflection",
-        title: "Mirror Lakes",
-        subtitle: "Stillness and beauty",
-        className: "col-span-1",
-    },
-    {
-        id: 23,
-        src: Image23,
-        alt: "Meadow Wildflowers",
-        title: "Floral Meadows",
-        subtitle: "Bloom where you are",
-        className: "col-span-1",
-    },
-    {
-        id: 24,
-        src: Image24,
-        alt: "Snowy Peak Summit",
-        title: "Frozen Summits",
-        subtitle: "Conquer the peak",
-        className: "col-span-1",
-    },
-    {
-        id: 25,
-        src: Image25,
-        alt: "Tropical Beach Shore",
-        title: "Shoreline Dreams",
-        subtitle: "Paradise found",
-        className: "col-span-1 md:col-span-2 md:row-span-2",
-    },
-    {
-        id: 26,
-        src: Image26,
-        alt: "Ancient Ruins",
-        title: "Lost Civilizations",
-        subtitle: "Echoes of the past",
-        className: "col-span-1",
-    },
-    {
-        id: 27,
-        src: Image27,
-        alt: "River Through Canyon",
-        title: "River Canyons",
-        subtitle: "Carved by time",
-        className: "col-span-1",
-    },
-    {
-        id: 28,
-        src: Image28,
-        alt: "Lavender Fields",
-        title: "Purple Horizons",
-        subtitle: "Scent of summer",
-        className: "col-span-1",
-    },
-    {
-        id: 29,
-        src: Image29,
-        alt: "Foggy Forest Morning",
-        title: "Misty Woods",
-        subtitle: "Quiet beginnings",
-        className: "col-span-1 md:col-span-2",
-    },
-    {
-        id: 30,
-        src: Image30,
-        alt: "Coastal Boardwalk",
-        title: "Boardwalk Strolls",
-        subtitle: "By the shore",
-        className: "col-span-1",
-    },
-    {
-        id: 31,
-        src: Image31,
-        alt: "Mountain Lake Sunrise",
-        title: "Alpine Dawn",
-        subtitle: "First light",
-        className: "col-span-1",
-    },
-    {
-        id: 32,
-        src: Image32,
-        alt: "Vineyard Countryside",
-        title: "Vineyard Views",
-        subtitle: "Taste of the land",
-        className: "col-span-1",
-    },
-    {
-        id: 33,
-        src: Image33,
-        alt: "Starfish on Beach",
-        title: "Shore Treasures",
-        subtitle: "Gifts from the sea",
-        className: "col-span-1",
-    },
-    {
-        id: 34,
-        src: Image34,
-        alt: "Canyon Overlook",
-        title: "Grand Vistas",
-        subtitle: "Awe at every turn",
-        className: "col-span-1",
-    },
+  {
+    id: 1,
+    src: Image1,
+    alt: "Cozy Cafe Interior",
+    title: "Urban Escapes",
+    subtitle: "Find your perfect spot",
+    className: "col-span-1 md:col-span-2 md:row-span-2",
+  },
+  {
+    id: 2,
+    src: Image2,
+    alt: "Luxury Hotel Room",
+    title: "Luxury Stays",
+    subtitle: "Unwind in comfort",
+    className: "col-span-1",
+  },
+  {
+    id: 3,
+    src: Image3,
+    alt: "Beach Sunset",
+    title: "Coastal Dreams",
+    subtitle: "Where sky meets sea",
+    className: "col-span-1",
+    objectPosition: "center 25%",
+  },
+  {
+    id: 4,
+    src: Image4,
+    alt: "Mountain Landscape",
+    title: "Peak Adventures",
+    subtitle: "Reach new heights",
+    className: "col-span-1 md:row-span-2",
+  },
+  {
+    id: 5,
+    src: Image5,
+    alt: "Travel Adventure",
+    title: "Wild Journeys",
+    subtitle: "Explore the unknown",
+    className: "col-span-1",
+  },
+  {
+    id: 6,
+    src: Image6,
+    alt: "Tropical Paradise",
+    title: "Island Life",
+    subtitle: "Pure tranquility",
+    className: "col-span-1",
+  },
+  {
+    id: 7,
+    src: Image7,
+    alt: "City Skyline",
+    title: "City Lights",
+    subtitle: "Urban wonders",
+    className: "col-span-1",
+  },
+  {
+    id: 8,
+    src: Image8,
+    alt: "Coffee Morning View",
+    title: "Morning Rituals",
+    subtitle: "Start your day right",
+    className: "col-span-1",
+  },
+  {
+    id: 9,
+    src: Image9,
+    alt: "Vintage Travel",
+    title: "Timeless Roads",
+    subtitle: "Classic adventures",
+    className: "col-span-1",
+  },
+  {
+    id: 10,
+    src: Image10,
+    alt: "Wanderlust Exploration",
+    title: "Wanderlust",
+    subtitle: "Let curiosity lead",
+    className: "col-span-1",
+  },
+  {
+    id: 11,
+    src: Image11,
+    alt: "Scenic Mountain Trail",
+    title: "Alpine Treks",
+    subtitle: "Into the wild",
+    className: "col-span-1",
+  },
+  {
+    id: 12,
+    src: Image12,
+    alt: "Coastal Cliff View",
+    title: "Ocean Bluffs",
+    subtitle: "Where land meets sea",
+    className: "col-span-1",
+  },
+  {
+    id: 13,
+    src: Image13,
+    alt: "Sunset Over Hills",
+    title: "Golden Hours",
+    subtitle: "Nature's palette",
+    className: "col-span-1 md:col-span-2 md:row-span-2",
+  },
+  {
+    id: 14,
+    src: Image14,
+    alt: "Historic City Street",
+    title: "Cobblestone Tales",
+    subtitle: "Steps through time",
+    className: "col-span-1",
+  },
+  {
+    id: 15,
+    src: Image15,
+    alt: "Lush Green Valley",
+    title: "Verdant Valleys",
+    subtitle: "Embrace the calm",
+    className: "col-span-1",
+  },
+  {
+    id: 16,
+    src: Image16,
+    alt: "Night Sky Over Mountains",
+    title: "Stellar Nights",
+    subtitle: "Above the clouds",
+    className: "col-span-1",
+  },
+  {
+    id: 17,
+    src: Image17,
+    alt: "Rural Countryside",
+    title: "Country Roads",
+    subtitle: "Simple pleasures",
+    className: "col-span-1 md:row-span-2",
+  },
+  {
+    id: 18,
+    src: Image18,
+    alt: "Waterfall Cascade",
+    title: "Falling Waters",
+    subtitle: "Nature's symphony",
+    className: "col-span-1",
+  },
+  {
+    id: 19,
+    src: Image19,
+    alt: "Harbor at Dusk",
+    title: "Harbor Lights",
+    subtitle: "Sailing into sunset",
+    className: "col-span-1",
+  },
+  {
+    id: 20,
+    src: Image20,
+    alt: "Desert Dunes",
+    title: "Desert Wanderer",
+    subtitle: "Endless horizons",
+    className: "col-span-1",
+  },
+  {
+    id: 21,
+    src: Image21,
+    alt: "Autumn Forest Path",
+    title: "Golden Canopy",
+    subtitle: "Walk among colors",
+    className: "col-span-1 md:col-span-2",
+  },
+  {
+    id: 22,
+    src: Image22,
+    alt: "Lake Reflection",
+    title: "Mirror Lakes",
+    subtitle: "Stillness and beauty",
+    className: "col-span-1",
+  },
+  {
+    id: 23,
+    src: Image23,
+    alt: "Meadow Wildflowers",
+    title: "Floral Meadows",
+    subtitle: "Bloom where you are",
+    className: "col-span-1",
+  },
+  {
+    id: 24,
+    src: Image24,
+    alt: "Snowy Peak Summit",
+    title: "Frozen Summits",
+    subtitle: "Conquer the peak",
+    className: "col-span-1",
+  },
+  {
+    id: 25,
+    src: Image25,
+    alt: "Tropical Beach Shore",
+    title: "Shoreline Dreams",
+    subtitle: "Paradise found",
+    className: "col-span-1 md:col-span-2 md:row-span-2",
+  },
+  {
+    id: 26,
+    src: Image26,
+    alt: "Ancient Ruins",
+    title: "Lost Civilizations",
+    subtitle: "Echoes of the past",
+    className: "col-span-1",
+  },
+  {
+    id: 27,
+    src: Image27,
+    alt: "River Through Canyon",
+    title: "River Canyons",
+    subtitle: "Carved by time",
+    className: "col-span-1",
+  },
+  {
+    id: 28,
+    src: Image28,
+    alt: "Lavender Fields",
+    title: "Purple Horizons",
+    subtitle: "Scent of summer",
+    className: "col-span-1",
+  },
+  {
+    id: 29,
+    src: Image29,
+    alt: "Foggy Forest Morning",
+    title: "Misty Woods",
+    subtitle: "Quiet beginnings",
+    className: "col-span-1 md:col-span-2",
+  },
+  {
+    id: 30,
+    src: Image30,
+    alt: "Coastal Boardwalk",
+    title: "Boardwalk Strolls",
+    subtitle: "By the shore",
+    className: "col-span-1",
+  },
+  {
+    id: 31,
+    src: Image31,
+    alt: "Mountain Lake Sunrise",
+    title: "Alpine Dawn",
+    subtitle: "First light",
+    className: "col-span-1",
+  },
+  {
+    id: 32,
+    src: Image32,
+    alt: "Vineyard Countryside",
+    title: "Vineyard Views",
+    subtitle: "Taste of the land",
+    className: "col-span-1",
+  },
+  {
+    id: 33,
+    src: Image33,
+    alt: "Starfish on Beach",
+    title: "Shore Treasures",
+    subtitle: "Gifts from the sea",
+    className: "col-span-1",
+  },
+  {
+    id: 34,
+    src: Image34,
+    alt: "Canyon Overlook",
+    title: "Grand Vistas",
+    subtitle: "Awe at every turn",
+    className: "col-span-1",
+  },
+  {
+    id: 35,
+    src: Image35,
+    alt: "Quiet Cove",
+    title: "Hidden Coves",
+    subtitle: "Secret shores",
+    className: "col-span-1",
+  },
+  {
+    id: 36,
+    src: Image36,
+    alt: "Open Road",
+    title: "Endless Roads",
+    subtitle: "Where to next?",
+    className: "col-span-1",
+  },
 ];
 ---
 
@@ -345,7 +365,7 @@ const photos = [
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[200px] sm:auto-rows-[220px] md:auto-rows-[240px] gap-3 md:gap-5">
                     {
-                        photos.map((photo) => (
+                        photos.map((photo, i) => (
                             <div
                                 class={`${photo.className} group cursor-pointer relative overflow-hidden rounded-2xl md:rounded-3xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500`}
                             >
@@ -357,7 +377,7 @@ const photos = [
                                         height={720}
                                         class="w-full h-full object-cover"
                                         style={`object-position: ${photo.objectPosition || "center"};`}
-                                        loading={"eager"}
+                                        loading={i < 4 ? "eager" : "lazy"}
                                     />
                                 </div>
 

@@ -1,16 +1,17 @@
 ---
-import { Menu, X } from "@lucide/astro";
 import { Image } from "astro:assets";
-import Logo from "@/assets/Logo.webp";
+import { Menu, X } from "@lucide/astro";
 import ArrowRight from "@/assets/icons/ArrowRight.svg";
+import Logo from "@/assets/Logo.avif";
+
 const { solid = false } = Astro.props;
 
 const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/gallery", label: "Gallery" },
-    { href: "/#process", label: "Process" },
-    { href: "/about", label: "About" },
-    { href: "/#contact", label: "Contact" },
+  { href: "/", label: "Home" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/#process", label: "Process" },
+  { href: "/about", label: "About" },
+  { href: "/#contact", label: "Contact" },
 ];
 ---
 

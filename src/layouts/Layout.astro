@@ -4,29 +4,27 @@ import { ClientRouter } from "astro:transitions";
 import ProgressBar from "astro-vtbot/components/ProgressBar.astro";
 
 interface Props {
-	canonical: string;
-	title?: string;
-	description?: string;
-	noindex?: boolean;
+  canonical: string;
+  title?: string;
+  description?: string;
+  noindex?: boolean;
 }
 
 const SITE_URL = "https://mapsformom.com";
 const DEFAULT_TITLE = "Maps For Mom - Your Dream Trip, Perfectly Planned";
 const DEFAULT_DESCRIPTION =
-	"Maps For Mom curates thoughtful, personalized trips for busy lives. With a special love for wellness and restorative travel, we handle every detail so you can rest, reset, and feel renewed.";
+  "Maps For Mom curates thoughtful, personalized trips for busy lives. With a special love for wellness and restorative travel, we handle every detail so you can rest, reset, and feel renewed.";
 
 const {
-	canonical,
-	title = DEFAULT_TITLE,
-	description = DEFAULT_DESCRIPTION,
-	noindex = false,
+  canonical,
+  title = DEFAULT_TITLE,
+  description = DEFAULT_DESCRIPTION,
+  noindex = false,
 } = Astro.props;
 
 // Ensure canonical is absolute URL
-const canonicalURL = canonical.startsWith("http")
-	? canonical
-	: `${SITE_URL}${canonical}`;
-const ogImageURL = `${SITE_URL}/og.webp`;
+const canonicalURL = canonical.startsWith("http") ? canonical : `${SITE_URL}${canonical}`;
+const ogImageURL = `${SITE_URL}/og.avif`;
 ---
 
 <!doctype html>
@@ -34,7 +32,7 @@ const ogImageURL = `${SITE_URL}/og.webp`;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/webp" href="/favicon.webp" />
+		<link rel="icon" type="image/avif" href="/favicon.avif" />
 
 		<!-- Primary Meta Tags -->
 		<title>{title}</title>
