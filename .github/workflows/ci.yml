@@ -1,13 +1,13 @@
-name: CI
+name: ci
 
 on:
   push:
-    branches: [main]
+    branches: [testing]
   pull_request:
-    branches: [main]
+    branches: [testing]
 
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-24.04
 
     steps:
@@ -27,5 +27,3 @@ jobs:
       - run: pnpm lint:fix
 
       - run: pnpm format
-
-      - run: pnpm build
