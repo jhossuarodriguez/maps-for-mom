@@ -5,7 +5,9 @@
   --color-secondary: #95a799;
   --color-thirdary: #eee7df;
   --color-muted: #ece3db;
-  --color-foreground: oklch(0.145 0 0);
+  --color-muted-foreground: #555555;
+  /* Provide a robust fallback and a hex value for consistent contrast calculations */
+  --color-foreground: #222222; /* Dark text */
   --font-sans: "Montserrat", system-ui;
 }
 
