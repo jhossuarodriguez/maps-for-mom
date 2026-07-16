@@ -4,6 +4,9 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
+import keystatic from '@keystatic/astro';
+import react from '@astrojs/react';
+import markdoc from '@astrojs/markdoc';
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,10 +26,9 @@ export default defineConfig({
 
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/404'),
-      changefreq: 'weekly',
-      priority: 0.7,
-      lastmod: new Date(),
-    }),
-  ],
+    filter: (page) => !page.includes('/404'),
+    changefreq: 'weekly',
+    priority: 0.7,
+    lastmod: new Date(),
+  }), react(), markdoc(), keystatic()],
 });

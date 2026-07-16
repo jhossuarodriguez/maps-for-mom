@@ -1,0 +1,50 @@
+---
+import { getCollection, render } from "astro:content";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import Layout from "@/layouts/Layout.astro";
+
+const { slug } = Astro.params;
+const posts = await getCollection("posts");
+const post = posts.find((entry) => entry.id.replace(/\/index$/, "") === slug);
+
+if (!post) {
+  return Astro.redirect("/404");
+}
+
+const { Content } = await render(post);
+---
+
+<Layout canonical={`/posts/${slug}`} title={`${post.data.title} | Maps For Mom`}>
+  <Header solid />
+  <main class="mx-auto min-h-screen max-w-3xl px-6 pb-20 pt-36">
+    <article class="post-content">
+      <h1>{post.data.title}</h1>
+      <Content />
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .post-content :global(h1) {
+    margin-bottom: 2rem;
+    color: var(--color-foreground);
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+  }
+
+  .post-content :global(p) {
+    margin: 1.25rem 0;
+    color: var(--color-muted-foreground);
+    font-size: 1.125rem;
+    line-height: 1.8;
+  }
+
+  .post-content :global(img) {
+    width: 100%;
+    margin: 2rem 0;
+    border-radius: 1.25rem;
+  }
+</style>
